@@ -107,3 +107,21 @@ window.addEventListener("load", () => {
     welcomeScreen.style.display = "none";
   }
 });
+
+// === Welcome Screen Logic ===
+document.addEventListener("DOMContentLoaded", () => {
+  const welcomeScreen = document.getElementById("welcome-screen");
+
+  // If not shown before (optional — comment this block out if you want it every time)
+  // if (!localStorage.getItem("welcomeShown")) {
+  //   localStorage.setItem("welcomeShown", "true");
+  // }
+
+  // Show welcome screen
+  welcomeScreen.classList.add("show");
+
+  // Fade it out after 2.5 seconds
+  setTimeout(() => {
+    welcomeScreen.classList.remove("show");
+  }, 2500); // adjust time here (ms)
+});

@@ -427,3 +427,33 @@ body {
 #welcome-screen.fade-out {
   animation: fadeOut 1s ease forwards;
 }
+
+/* ====== Navigation / Logo Left Layout ====== */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* aligns items to the left */
+  padding: 15px 30px;
+  gap: 15px; /* space between logo and title */
+  background: transparent; /* or use your header color */
+}
+
+nav .logo {
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+nav .logo:hover {
+  transform: scale(1.05);
+}
+
+nav .site-title {
+  color: white; /* adjust to match your theme */
+  font-size: 2em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}

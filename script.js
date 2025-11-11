@@ -125,3 +125,16 @@ document.addEventListener("DOMContentLoaded", () => {
     welcomeScreen.classList.remove("show");
   }, 2500); // adjust time here (ms)
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const welcomeScreen = document.getElementById("welcome-screen");
+
+  // Show it immediately
+  welcomeScreen.classList.add("show");
+
+  // Wait a few seconds, then fade out
+  setTimeout(() => {
+    welcomeScreen.classList.remove("show");
+    welcomeScreen.classList.add("fade-out");
+  }, 2500); // 2.5 seconds before fade-out starts
+});

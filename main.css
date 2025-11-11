@@ -40,7 +40,6 @@ nav .site-title {
     display: flex;
     gap: 16px;
     margin-bottom: 16px;
-    position: relative;
 }
 .featured img {
     width: 150px;
@@ -164,23 +163,4 @@ nav .site-title {
 }
 .welcome-content h1 span {
     color: #1e40af;
-}
-
-.settings-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-}
-.settings-header h2 {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-.settings-header button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
 }

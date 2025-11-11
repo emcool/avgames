@@ -45,6 +45,7 @@ nav .site-title {
     width: 150px;
     height: auto;
     border-radius: 8px;
+    position: relative;
 }
 .play-button {
     position: absolute;

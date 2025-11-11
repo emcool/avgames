@@ -363,3 +363,17 @@ body {
 #welcome-screen.fade-out {
   animation: fadeOut 1s ease forwards;
 }
+
+/* ====== Logo Styling ====== */
+.logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}

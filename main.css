@@ -314,93 +314,8 @@ body {
   }
 }
 
-/* ====== Welcome Screen ====== */
-#welcome-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #000010 0%, #000000 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 1.2s ease, visibility 0s linear 1.2s;
-  z-index: 9999;
-}
 
-#welcome-screen.show {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 1.2s ease;
-}
 
-.welcome-content {
-  text-align: center;
-  color: white;
-  animation: fadeInText 2s ease forwards;
-}
-
-.welcome-content h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-/* ====== Welcome Screen ====== */
-#welcome-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #0d0d0d, #000);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  z-index: 9999;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 1s ease, visibility 0s linear 1s;
-}
-
-/* When shown */
-#welcome-screen.show {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 1s ease;
-}
-
-#welcome-screen.fade-out {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 1s ease, visibility 0s linear 1s;
-}
-
-.welcome-content {
-  text-align: center;
-  color: white;
-}
-
-.welcome-content h1 {
-  font-size: 3em;
-  letter-spacing: 2px;
-  text-align: center;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-}
-
-.welcome-content h1 span {
-  color: #00bfff;
-}
-
-.welcome-content p {
-  margin-top: 15px;
-  font-size: 1.2em;
-  opacity: 0.8;
-}
   color: white; /* adjust to match your theme */
   font-size: 2em;
   font-weight: bold;
@@ -451,3 +366,54 @@ nav .site-title {
 }
 
 
+
+/* ===== Welcome Screen ===== */
+#welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #0d0d0d, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  z-index: 9999;
+}
+
+#welcome-screen.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#welcome-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.welcome-content {
+  text-align: center;
+}
+
+.welcome-content h1 {
+  font-size: 3em;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.welcome-content h1 span {
+  color: #00bfff;
+}
+
+.welcome-content p {
+  margin-top: 15px;
+  font-size: 1.2em;
+  opacity: 0.8;
+}

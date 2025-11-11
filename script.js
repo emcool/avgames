@@ -63,78 +63,27 @@ document.addEventListener('keydown', function(event) {
     closeSettings();
   }
 });
-
-// ====== Welcome Screen Script (Only shows once) ======
 window.addEventListener("load", () => {
   const welcomeScreen = document.getElementById("welcome-screen");
   if (!welcomeScreen) return;
 
-  // Check if the user has already seen the welcome screen
   const seenWelcome = localStorage.getItem("seenWelcome");
 
   if (!seenWelcome) {
-    // First time visiting — show the welcome animation
+    welcomeScreen.classList.add("show");
+
     setTimeout(() => {
       welcomeScreen.classList.add("fade-out");
-
       setTimeout(() => {
         welcomeScreen.style.display = "none";
-        // Remember that they’ve seen it
         localStorage.setItem("seenWelcome", "true");
       }, 1000); // fade duration
-    }, 2500); // how long it stays visible
-  } else {
-    // Already visited — hide instantly
-    welcomeScreen.style.display = "none";
-  }
-});
-
-window.addEventListener("load", () => {
-  const welcomeScreen = document.getElementById("welcome-screen");
-  if (!welcomeScreen) return;
-
-  const seenWelcome = localStorage.getItem("seenWelcome");
-
-  if (!seenWelcome) {
-    setTimeout(() => {
-      welcomeScreen.classList.add("fade-out");
-      setTimeout(() => {
-        welcomeScreen.style.display = "none";
-        localStorage.setItem("seenWelcome", "true");
-      }, 1000);
-    }, 2500);
+    }, 2500); // visible time
   } else {
     welcomeScreen.style.display = "none";
   }
 });
 
-// === Welcome Screen Logic ===
-document.addEventListener("DOMContentLoaded", () => {
-  const welcomeScreen = document.getElementById("welcome-screen");
 
-  // If not shown before (optional — comment this block out if you want it every time)
-  // if (!localStorage.getItem("welcomeShown")) {
-  //   localStorage.setItem("welcomeShown", "true");
-  // }
 
-  // Show welcome screen
-  welcomeScreen.classList.add("show");
 
-  // Fade it out after 2.5 seconds
-  setTimeout(() => {
-    welcomeScreen.classList.remove("show");
-  }, 2500); // adjust time here (ms)
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const welcomeScreen = document.getElementById("welcome-screen");
-
-  // Show it immediately
-  welcomeScreen.classList.add("show");
-
-  // Wait a few seconds, then fade out
-  setTimeout(() => {
-    welcomeScreen.classList.remove("show");
-    welcomeScreen.classList.add("fade-out");
-  }, 2500); // 2.5 seconds before fade-out starts
-});

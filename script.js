@@ -89,3 +89,21 @@ window.addEventListener("load", () => {
   }
 });
 
+window.addEventListener("load", () => {
+  const welcomeScreen = document.getElementById("welcome-screen");
+  if (!welcomeScreen) return;
+
+  const seenWelcome = localStorage.getItem("seenWelcome");
+
+  if (!seenWelcome) {
+    setTimeout(() => {
+      welcomeScreen.classList.add("fade-out");
+      setTimeout(() => {
+        welcomeScreen.style.display = "none";
+        localStorage.setItem("seenWelcome", "true");
+      }, 1000);
+    }, 2500);
+  } else {
+    welcomeScreen.style.display = "none";
+  }
+});

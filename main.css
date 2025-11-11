@@ -457,3 +457,45 @@ nav .site-title {
   letter-spacing: 1px;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
+
+/* ===== Header: logo left, title next to it ===== */
+nav {
+  width: 100%;
+  display: flex;
+  align-items: center;       /* vertically center items */
+  justify-content: flex-start; /* keep items at left */
+  gap: 14px;                 /* space between logo and title */
+  padding: 12px 24px;        /* adjust top/bottom and left/right spacing */
+  box-sizing: border-box;
+}
+
+/* logo size and hover */
+nav .logo {
+  width: 72px;   /* smaller so it fits in header — change to taste */
+  height: auto;
+  display: block;
+  cursor: pointer;
+  margin: 0;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.15));
+  transition: transform .18s ease;
+}
+nav .logo:hover { transform: scale(1.03); }
+
+/* precise site-title rules to override any global h1 */
+nav .site-title {
+  margin: 0;                 /* remove default h1 margin */
+  font-size: 28px;          /* sensible header size — change if you want larger/smaller */
+  font-weight: 700;
+  color: #ffffff;           /* adjust to match site theme */
+  letter-spacing: 0.5px;
+  text-align: left;
+  line-height: 1;
+}
+
+/* Optional: make the settings button sit top-right (if you want it independent of nav) */
+.settings-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10000; /* above most elements */
+}

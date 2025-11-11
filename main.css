@@ -8,7 +8,6 @@ body {
     color: white;
 }
 
-/* Navigation */
 nav {
     position: fixed;
     top: 0;
@@ -30,7 +29,6 @@ nav .site-title {
     margin: 0;
 }
 
-/* Featured Games */
 .featured {
     margin-top: 80px;
     padding: 16px;
@@ -57,7 +55,6 @@ nav .site-title {
     color: white;
 }
 
-/* Search */
 .search {
     display: flex;
     justify-content: center;
@@ -78,7 +75,6 @@ nav .site-title {
     cursor: pointer;
 }
 
-/* Settings Panel */
 .settings-btn {
     position: fixed;
     bottom: 20px;
@@ -123,7 +119,6 @@ nav .site-title {
     right: 0;
 }
 
-/* Color Grid */
 .color-grid {
     display: flex;
     flex-wrap: wrap;
@@ -145,22 +140,6 @@ nav .site-title {
     border: 2px solid yellow;
 }
 
-/* Music Toggle Button */
-.music-toggle button {
-    background: #333;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-.music-toggle button:hover {
-    background: #555;
-}
-
-/* Welcome Screen */
 #welcome-screen {
     position: fixed;
     top:0; left:0;

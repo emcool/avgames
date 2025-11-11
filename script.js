@@ -74,18 +74,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (!music || !btn) return;
 
-  // set initial volume (0.15 = 15%)
+  // set initial volume (soft background music)
   music.volume = 0.15;
 
   // apply saved state
   if (savedMusicState === 'on') {
-    music.play().catch(() => {}); // ignore autoplay block
+    music.play().catch(() => {}); // ignore autoplay restrictions
     btn.textContent = '🔊 On';
   } else {
     btn.textContent = '🔇 Off';
   }
 
-  // make global so onclick works
+  // make global so button can call it
   window.toggleMusic = function () {
     if (music.paused) {
       music.play();

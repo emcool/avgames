@@ -63,3 +63,19 @@ document.addEventListener('keydown', function(event) {
     closeSettings();
   }
 });
+
+// ====== Welcome Screen Script ======
+window.addEventListener("load", () => {
+  const welcomeScreen = document.getElementById("welcome-screen");
+  if (!welcomeScreen) return; // in case the element doesn't exist
+
+  // Wait a few seconds before fading out
+  setTimeout(() => {
+    welcomeScreen.classList.add("fade-out");
+
+    // Wait for fade-out to finish
+    setTimeout(() => {
+      welcomeScreen.style.display = "none";
+    }, 1000); // match fade-out duration
+  }, 2500); // how long the welcome stays visible
+});

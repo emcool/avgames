@@ -64,18 +64,28 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-// ====== Welcome Screen Script ======
+// ====== Welcome Screen Script (Only shows once) ======
 window.addEventListener("load", () => {
   const welcomeScreen = document.getElementById("welcome-screen");
-  if (!welcomeScreen) return; // in case the element doesn't exist
+  if (!welcomeScreen) return;
 
-  // Wait a few seconds before fading out
-  setTimeout(() => {
-    welcomeScreen.classList.add("fade-out");
+  // Check if the user has already seen the welcome screen
+  const seenWelcome = localStorage.getItem("seenWelcome");
 
-    // Wait for fade-out to finish
+  if (!seenWelcome) {
+    // First time visiting — show the welcome animation
     setTimeout(() => {
-      welcomeScreen.style.display = "none";
-    }, 1000); // match fade-out duration
-  }, 2500); // how long the welcome stays visible
+      welcomeScreen.classList.add("fade-out");
+
+      setTimeout(() => {
+        welcomeScreen.style.display = "none";
+        // Remember that they’ve seen it
+        localStorage.setItem("seenWelcome", "true");
+      }, 1000); // fade duration
+    }, 2500); // how long it stays visible
+  } else {
+    // Already visited — hide instantly
+    welcomeScreen.style.display = "none";
+  }
 });
+

@@ -7,8 +7,62 @@
     <title>Education</title>
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+    <!-- Add Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Settings Button -->
+<button class="settings-btn" onclick="openSettings()">
+  <i class="fas fa-cog"></i>
+</button>
+
+<!-- Settings Backdrop -->
+<div class="settings-backdrop" id="settingsBackdrop" onclick="closeSettings()"></div>
+
+<!-- Settings Panel -->
+<div class="settings-panel" id="settingsPanel">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+    <h2 style="color: white; font-size: 24px; font-weight: bold;">
+      <i class="fas fa-cog"></i> Settings
+    </h2>
+    <button onclick="closeSettings()" style="background: none; border: none; color: white; cursor: pointer; padding: 8px;">
+      <i class="fas fa-times" style="font-size: 24px;"></i>
+    </button>
+  </div>
+
+  <h3 style="color: white; font-size: 18px; margin-bottom: 16px;">Background Color</h3>
+  
+  <div class="color-grid">
+    <div class="color-option" onclick="changeColor('#000000', this)">
+      <div class="color-preview" style="background-color: #000000;"></div>
+      <div class="color-name">Black</div>
+    </div>
+    <div class="color-option" onclick="changeColor('#1a1a1a', this)">
+      <div class="color-preview" style="background-color: #1a1a1a;"></div>
+      <div class="color-name">Charcoal</div>
+    </div>
+    <div class="color-option" onclick="changeColor('#1e3a8a', this)">
+      <div class="color-preview" style="background-color: #1e3a8a;"></div>
+      <div class="color-name">Blue</div>
+    </div>
+    <div class="color-option" onclick="changeColor('#1e40af', this)">
+      <div class="color-preview" style="background-color: #1e40af;"></div>
+      <div class="color-name">Dark Blue</div>
+    </div>
+    <div class="color-option" onclick="changeColor('#166534', this)">
+      <div class="color-preview" style="background-color: #166534;"></div>
+      <div class="color-name">Green</div>
+    </div>
+    <div class="color-option" onclick="changeColor('#14532d', this)">
+      <div class="color-preview" style="background-color: #14532d;"></div>
+      <div class="color-name">Dark Green</div>
+    </div>
+    <div class="color-option" onclick="changeColor('#581c87', this)">
+      <div class="color-preview" style="background-color: #581c87;"></div>
+      <div class="color-name">Purple</div>
+    </div>
+  </div>
+</div>
     <nav>
         <img src="images/logo.png" alt="logo">
         <h1>Av Games</h1>
@@ -89,4 +143,5 @@
 
 
 <script src="script.js"></script>
+
 

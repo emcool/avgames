@@ -65,33 +65,3 @@ window.addEventListener("DOMContentLoaded", () => {
     welcomeScreen.style.display = "none";
   }
 });
-
-// ===== BACKGROUND MUSIC FUNCTIONALITY =====
-window.addEventListener('DOMContentLoaded', () => {
-  const music = document.getElementById('bgMusic');
-  const btn = document.getElementById('musicToggleBtn');
-  const savedMusicState = localStorage.getItem('av-games-music');
-
-  if (!music || !btn) return;
-
-  music.volume = 0.15;
-
-  if (savedMusicState === 'on') {
-    music.play().catch(() => {});
-    btn.textContent = '🔊 On';
-  } else {
-    btn.textContent = '🔇 Off';
-  }
-
-  window.toggleMusic = function () {
-    if (music.paused) {
-      music.play();
-      btn.textContent = '🔊 On';
-      localStorage.setItem('av-games-music', 'on');
-    } else {
-      music.pause();
-      btn.textContent = '🔇 Off';
-      localStorage.setItem('av-games-music', 'off');
-    }
-  };
-});

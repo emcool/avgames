@@ -347,64 +347,6 @@ body {
 .welcome-content h1 {
   font-size: 2.5em;
   margin-bottom: 10px;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-}
-
-.welcome-content p {
-  font-size: 1.2em;
-  opacity: 0.8;
-}
-
-@keyframes fadeInText {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.welcome-content h1 {
-  font-size: 3em;
-  letter-spacing: 2px;
-  text-align: center;
-}
-
-.welcome-content h1 span {
-  color: #00bfff;
-}
-
-.welcome-content p {
-  margin-top: 15px;
-  font-size: 1.2em;
-  opacity: 0.8;
-}
-
-/* Fade Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-#welcome-screen.fade-out {
-  animation: fadeOut 1s ease forwards;
-}
-
-/* ====== Logo Styling ====== */
-.logo {
-  width: 180px;
-  height: auto;
-  display: block;
-  margin: 20px auto;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
 /* ====== Welcome Screen ====== */
 #welcome-screen {
   position: fixed;
@@ -421,13 +363,33 @@ body {
   font-family: 'Poppins', sans-serif;
   z-index: 9999;
   opacity: 0;
-  animation: fadeIn 1s ease forwards;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 0s linear 1s;
+}
+
+/* When shown */
+#welcome-screen.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease;
+}
+
+#welcome-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 0s linear 1s;
+}
+
+.welcome-content {
+  text-align: center;
+  color: white;
 }
 
 .welcome-content h1 {
   font-size: 3em;
   letter-spacing: 2px;
   text-align: center;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
 .welcome-content h1 span {
@@ -439,45 +401,6 @@ body {
   font-size: 1.2em;
   opacity: 0.8;
 }
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-#welcome-screen.fade-out {
-  animation: fadeOut 1s ease forwards;
-}
-
-/* ====== Navigation / Logo Left Layout ====== */
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* aligns items to the left */
-  padding: 15px 30px;
-  gap: 15px; /* space between logo and title */
-  background: transparent; /* or use your header color */
-}
-
-nav .logo {
-  width: 80px;
-  height: auto;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-nav .logo:hover {
-  transform: scale(1.05);
-}
-
-nav .site-title {
   color: white; /* adjust to match your theme */
   font-size: 2em;
   font-weight: bold;
@@ -526,4 +449,5 @@ nav .site-title {
   right: 12px;
   z-index: 10000; /* above most elements */
 }
+
 

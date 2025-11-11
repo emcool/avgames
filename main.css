@@ -37,6 +37,8 @@
   font-size: 3em;
   letter-spacing: 2px;
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  animation: fadeInText 1.5s ease forwards;
+  animation-delay: 0s; /* appear immediately */
 }
 
 .welcome-content h1 span {
@@ -47,4 +49,18 @@
   margin-top: 15px;
   font-size: 1.2em;
   opacity: 0.8;
+  animation: fadeInText 1.5s ease forwards;
+  animation-delay: 0.5s; /* appears slightly after h1 */
+}
+
+/* ===== Fade-in animation for text ===== */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

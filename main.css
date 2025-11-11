@@ -218,25 +218,25 @@ nav .site-title {
     font-size: 24px;
 }
 
-/* ===== Settings Panel (Updated Slide-In) ===== */
+/* ===== Settings Panel ===== */
 .settings-panel {
     position: fixed;
     top: 0;
-    right: -400px; /* start offscreen */
+    right: -100%; /* fully offscreen initially */
     height: 100vh;
     width: 100%;
     max-width: 384px;
     background: rgba(17, 24, 39, 0.95);
     backdrop-filter: blur(16px);
     z-index: 50;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* smooth slide */
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 24px;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
 }
 
 .settings-panel.open {
-    right: 0; /* slides in */
+    right: 0; /* slides in completely */
 }
 
 /* ===== Settings Backdrop ===== */
@@ -247,8 +247,8 @@ nav .site-title {
     backdrop-filter: blur(4px);
     z-index: 40;
     display: none;
-    transition: opacity 0.3s ease;
     opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .settings-backdrop.open {
@@ -344,6 +344,7 @@ nav .site-title {
     letter-spacing: 2px;
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
     animation: fadeInText 1.5s ease forwards;
+    animation-delay: 0s;
 }
 
 .welcome-content h1 span {

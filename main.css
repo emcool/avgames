@@ -20,12 +20,10 @@ nav {
     padding: 8px 24px;
     z-index: 1000;
 }
-
 nav .logo {
     height: 40px;
     margin-right: 12px;
 }
-
 nav .site-title {
     font-size: 24px;
     margin: 0;
@@ -35,23 +33,20 @@ nav .site-title {
     margin-top: 80px;
     padding: 16px;
 }
-
 .featured h1 {
     margin-bottom: 16px;
 }
-
 .featured .column, .featured .row {
     display: flex;
     gap: 16px;
     margin-bottom: 16px;
+    position: relative;
 }
-
 .featured img {
     width: 150px;
     height: auto;
     border-radius: 8px;
 }
-
 .play-button {
     position: absolute;
     top: 50%;
@@ -66,14 +61,12 @@ nav .site-title {
     justify-content: center;
     margin: 24px 0;
 }
-
 .search input {
     padding: 8px 12px;
     border-radius: 8px 0 0 8px;
     border: none;
     width: 200px;
 }
-
 .search button {
     padding: 8px 12px;
     border-radius: 0 8px 8px 0;
@@ -97,7 +90,6 @@ nav .site-title {
     font-size: 24px;
     cursor: pointer;
 }
-
 .settings-backdrop {
     position: fixed;
     top:0; left:0;
@@ -108,12 +100,10 @@ nav .site-title {
     transition: all 0.3s ease;
     z-index: 1500;
 }
-
 .settings-backdrop.open {
     opacity: 1;
     visibility: visible;
 }
-
 .settings-panel {
     position: fixed;
     right: -350px;
@@ -126,31 +116,8 @@ nav .site-title {
     z-index: 2000;
     overflow-y: auto;
 }
-
 .settings-panel.open {
     right: 0;
-}
-
-.settings-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-}
-
-.settings-header h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-}
-
-.settings-header button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 8px;
 }
 
 .color-grid {
@@ -158,21 +125,18 @@ nav .site-title {
     flex-wrap: wrap;
     gap: 12px;
 }
-
 .color-option {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
-
 .color-preview {
     width: 40px;
     height: 40px;
     border-radius: 4px;
     border: 2px solid white;
 }
-
 .color-option.selected .color-preview {
     border: 2px solid yellow;
 }
@@ -190,17 +154,33 @@ nav .site-title {
     transition: all 0.5s ease;
     z-index: 3000;
 }
-
 #welcome-screen.show {
     opacity: 1;
     visibility: visible;
 }
-
 #welcome-screen.fade-out {
     opacity: 0;
     visibility: hidden;
 }
-
 .welcome-content h1 span {
     color: #1e40af;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+.settings-header h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+.settings-header button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
 }

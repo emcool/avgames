@@ -13,7 +13,7 @@ if (input) {
     });
 }
 
-// SETTINGS PANEL OPEN/CLOSE
+// OPEN/CLOSE SETTINGS
 function openSettings() {
     document.getElementById("settingsPanel").classList.add("open");
     document.getElementById("settingsBackdrop").classList.add("open");
@@ -61,7 +61,7 @@ function applyFont(fontKey) {
 // APPLY GLOW
 function applyGlow(level) {
     let strength = 1;
-    if (level === "low") strength = 0.5;
+    if (level === "low") strength = .5;
     if (level === "medium") strength = 1;
     if (level === "high") strength = 1.6;
 
@@ -73,7 +73,7 @@ function applyGlow(level) {
     });
 }
 
-// INITIALIZE SETTINGS ON LOAD
+// RESTORE SAVED SETTINGS
 window.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("av-theme") || "midnight";
     const savedFont = localStorage.getItem("av-font") || "montserrat";
@@ -83,16 +83,15 @@ window.addEventListener("DOMContentLoaded", () => {
     applyFont(savedFont);
     applyGlow(savedGlow);
 
-    // Hook up buttons
-    document.querySelectorAll(".theme-option").forEach(btn => {
-        btn.addEventListener("click", () => applyTheme(btn.dataset.theme));
-    });
+    document.querySelectorAll(".theme-option").forEach(btn =>
+        btn.addEventListener("click", () => applyTheme(btn.dataset.theme))
+    );
 
-    document.querySelectorAll(".font-option").forEach(btn => {
-        btn.addEventListener("click", () => applyFont(btn.dataset.font));
-    });
+    document.querySelectorAll(".font-option").forEach(btn =>
+        btn.addEventListener("click", () => applyFont(btn.dataset.font))
+    );
 
-    document.querySelectorAll(".glow-option").forEach(btn => {
-        btn.addEventListener("click", () => applyGlow(btn.dataset.glow));
-    });
+    document.querySelectorAll(".glow-option").forEach(btn =>
+        btn.addEventListener("click", () => applyGlow(btn.dataset.glow))
+    );
 });

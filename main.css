@@ -74,7 +74,6 @@ nav h1 {
     transition: right 0.35s ease;
     z-index: 2000;
     box-sizing: border-box;
-    backdrop-filter: blur(20px);
 }
 
 .settings-panel.open { right: 0; }
@@ -174,4 +173,5 @@ nav h1 {
     margin: 0.5vw;
     border-radius: 1vw;
 }
+
 

@@ -1,67 +1,50 @@
-// ===== SEARCH FUNCTIONALITY =====
+// Search filtering
 const input = document.querySelector('input');
 const games = document.querySelectorAll('#games img');
 
-input.addEventListener('input', () => {
-  const searchTerm = input.value.toLowerCase();
-  games.forEach(game => {
-    game.style.display = game.alt.toLowerCase().includes(searchTerm) ? 'block' : 'none';
-  });
-});
-
-// ===== SETTINGS FUNCTIONALITY =====
-window.addEventListener('DOMContentLoaded', () => {
-  const savedColor = localStorage.getItem('av-games-bg-color');
-  if (savedColor) {
-    document.body.style.backgroundColor = savedColor;
-    document.querySelectorAll('.color-option').forEach(option => {
-      const colorValue = option.getAttribute('onclick').match(/#[0-9a-fA-F]{6}/)[0];
-      if (colorValue === savedColor) option.classList.add('selected');
+if (input && games.length > 0) {
+  input.addEventListener('input', () => {
+    const term = input.value.toLowerCase();
+    games.forEach(game => {
+      game.parentElement.style.display = game.alt.toLowerCase().includes(term)
+        ? 'inline-block'
+        : 'none';
     });
-  }
-});
+  });
+}
 
+// Settings open/close
 function openSettings() {
   document.getElementById('settingsPanel').classList.add('open');
   document.getElementById('settingsBackdrop').classList.add('open');
 }
-
 function closeSettings() {
   document.getElementById('settingsPanel').classList.remove('open');
   document.getElementById('settingsBackdrop').classList.remove('open');
 }
 
-function changeColor(color, element) {
-  document.body.style.backgroundColor = color;
-  localStorage.setItem('av-games-bg-color', color);
+// Change background + save
+function setBackground(option, el) {
+  let background = option;
+  if (option === 'pattern') {
+    document.body.style.background = "url('images/pattern-bg.png')";
+    document.body.style.backgroundSize = "200px";
+    document.body.style.backgroundRepeat = "repeat";
+  } else {
+    document.body.style.background = option;
+  }
+  localStorage.setItem('background', option);
   document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
-  element.classList.add('selected');
+  el.classList.add('selected');
 }
 
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeSettings();
-});
-
-// ===== WELCOME SCREEN FUNCTIONALITY =====
-window.addEventListener("DOMContentLoaded", () => {
-  const welcomeScreen = document.getElementById("welcome-screen");
-  if (!welcomeScreen) return;
-
-  const seenWelcome = localStorage.getItem("seenWelcome");
-
-  if (!seenWelcome) {
-    welcomeScreen.classList.add("show");
-
-    setTimeout(() => {
-      welcomeScreen.classList.remove("show");
-      welcomeScreen.classList.add("fade-out");
-
-      setTimeout(() => {
-        welcomeScreen.style.display = "none";
-        localStorage.setItem("seenWelcome", "true");
-      }, 1000);
-    }, 2500);
-  } else {
-    welcomeScreen.style.display = "none";
+// Load saved background
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('background');
+  if (saved === 'pattern') {
+    document.body.style.background = "url('images/pattern-bg.png')";
+    document.body.style.backgroundSize = "200px";
+  } else if (saved) {
+    document.body.style.background = saved;
   }
 });

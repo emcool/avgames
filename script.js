@@ -1,119 +1,122 @@
-// =====================
+// ===================================
 // SEARCH
-// =====================
+// ===================================
 const input = document.querySelector(".search input");
 const games = document.querySelectorAll("#games img");
 
 if (input) {
-  input.addEventListener("input", () => {
-    const searchTerm = input.value.toLowerCase();
-    games.forEach((img) => {
-      const alt = (img.alt || "").toLowerCase();
-      img.style.display = alt.includes(searchTerm) ? "block" : "none";
+    input.addEventListener("input", () => {
+        const term = input.value.toLowerCase();
+        games.forEach(img =>
+            img.style.display = img.alt.toLowerCase().includes(term) ? "block" : "none"
+        );
     });
-  });
 }
 
-// =====================
+// ===================================
 // SETTINGS PANEL
-// =====================
+// ===================================
 function openSettings() {
-  document.getElementById("settingsPanel").classList.add("open");
-  document.getElementById("settingsBackdrop").classList.add("open");
-  document.querySelector(".settings-btn").classList.add("spin");
+    document.getElementById("settingsPanel").classList.add("open");
+    document.getElementById("settingsBackdrop").classList.add("open");
+    document.querySelector(".settings-btn").classList.add("spin");
 }
 
 function closeSettings() {
-  document.getElementById("settingsPanel").classList.remove("open");
-  document.getElementById("settingsBackdrop").classList.remove("open");
-  document.querySelector(".settings-btn").classList.remove("spin");
+    document.getElementById("settingsPanel").classList.remove("open");
+    document.getElementById("settingsBackdrop").classList.remove("open");
+    document.querySelector(".settings-btn").classList.remove("spin");
 }
 
-// =====================
-// THEME HANDLING
-// =====================
+// ===================================
+// THEMES
+// ===================================
 function applyTheme(theme) {
-  const body = document.body;
-  const themes = [
-    "midnightplus",
-    "cosmicdrift",
-    "galaxyparallax",
-    "warpcore",
-    "neonpulse",
-    "greyminimal"
-  ];
+    const themes = [
+        "midnightplus",
+        "cosmicdrift",
+        "galaxyparallax",
+        "warpcore",
+        "neonpulse",
+        "greyminimal",
+        "eventhorizon"
+    ];
 
-  themes.forEach((t) => body.classList.remove("theme-" + t));
-  body.classList.add("theme-" + theme);
+    themes.forEach(t => document.body.classList.remove("theme-" + t));
+    document.body.classList.add("theme-" + theme);
 
-  localStorage.setItem("av-theme", theme);
+    localStorage.setItem("av-theme", theme);
 
-  document.querySelectorAll(".theme-option").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.theme === theme);
-  });
+    document.querySelectorAll(".theme-option").forEach(btn =>
+        btn.classList.toggle("active", btn.dataset.theme === theme)
+    );
 }
 
-// =====================
-// FONT HANDLING
-// =====================
+// ===================================
+// FONT
+// ===================================
 function applyFont(fontKey) {
-  const fonts = {
-    montserrat: "'Montserrat', sans-serif",
-    orbitron: "'Orbitron', sans-serif",
-    nunito: "'Nunito', sans-serif"
-  };
+    const fonts = {
+        montserrat: "'Montserrat', sans-serif",
+        orbitron: "'Orbitron', sans-serif",
+        nunito: "'Nunito', sans-serif"
+    };
 
-  const selected = fonts[fontKey] || fonts.montserrat;
-  document.documentElement.style.setProperty("--font-family", selected);
-  localStorage.setItem("av-font", fontKey);
+    document.documentElement.style.setProperty("--font-family", fonts[fontKey]);
+    localStorage.setItem("av-font", fontKey);
 
-  document.querySelectorAll(".font-option").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.font === fontKey);
-  });
+    document.querySelectorAll(".font-option").forEach(btn =>
+        btn.classList.toggle("active", btn.dataset.font === fontKey)
+    );
 }
 
-// =====================
-// GLOW HANDLING
-// =====================
+// ===================================
+// GLOW
+// ===================================
 function applyGlow(level) {
-  let strength = 1;
+    const levels = { low: 0.5, medium: 1, high: 1.6 };
+    document.documentElement.style.setProperty("--glow-strength", levels[level]);
+    localStorage.setItem("av-glow", level);
 
-  if (level === "low") strength = 0.5;
-  if (level === "medium") strength = 1;
-  if (level === "high") strength = 1.6;
-
-  document.documentElement.style.setProperty("--glow-strength", strength);
-  localStorage.setItem("av-glow", level);
-
-  document.querySelectorAll(".glow-option").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.glow === level);
-  });
+    document.querySelectorAll(".glow-option").forEach(btn =>
+        btn.classList.toggle("active", btn.dataset.glow === level)
+    );
 }
 
-// =====================
-// INIT ON LOAD
-// =====================
+// ===================================
+// SHOOTING STAR
+// ===================================
+const shootingStar = document.getElementById("shooting-star");
+
+function spawnShootingStar() {
+    shootingStar.style.opacity = "1";
+    shootingStar.style.animation = "shootingStar 1.2s linear forwards";
+
+    setTimeout(() => {
+        shootingStar.style.opacity = "0";
+        shootingStar.style.animation = "none";
+    }, 1200);
+}
+
+setInterval(spawnShootingStar, 10000); // Every 10 sec
+
+// ===================================
+// INIT
+// ===================================
 window.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("av-theme") || "midnightplus";
-  const savedFont = localStorage.getItem("av-font") || "montserrat";
-  const savedGlow = localStorage.getItem("av-glow") || "medium";
+    applyTheme(localStorage.getItem("av-theme") || "midnightplus");
+    applyFont(localStorage.getItem("av-font") || "montserrat");
+    applyGlow(localStorage.getItem("av-glow") || "medium");
 
-  applyTheme(savedTheme);
-  applyFont(savedFont);
-  applyGlow(savedGlow);
+    document.querySelectorAll(".theme-option").forEach(btn =>
+        btn.addEventListener("click", () => applyTheme(btn.dataset.theme))
+    );
 
-  // Hook theme buttons
-  document.querySelectorAll(".theme-option").forEach((btn) => {
-    btn.addEventListener("click", () => applyTheme(btn.dataset.theme));
-  });
+    document.querySelectorAll(".font-option").forEach(btn =>
+        btn.addEventListener("click", () => applyFont(btn.dataset.font))
+    );
 
-  // Hook font buttons
-  document.querySelectorAll(".font-option").forEach((btn) => {
-    btn.addEventListener("click", () => applyFont(btn.dataset.font));
-  });
-
-  // Hook glow buttons
-  document.querySelectorAll(".glow-option").forEach((btn) => {
-    btn.addEventListener("click", () => applyGlow(btn.dataset.glow));
-  });
+    document.querySelectorAll(".glow-option").forEach(btn =>
+        btn.addEventListener("click", () => applyGlow(btn.dataset.glow))
+    );
 });

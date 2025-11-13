@@ -1,39 +1,45 @@
 // SEARCH
-const input = document.querySelector('input');
-const games = document.querySelectorAll('#games img');
+const input = document.querySelector(".search input");
+const games = document.querySelectorAll("#games img");
 
-input.addEventListener('input', () => {
+input.addEventListener("input", () => {
     const searchTerm = input.value.toLowerCase();
-    games.forEach(game => {
-        game.style.display =
-            game.alt.toLowerCase().includes(searchTerm) ? 'block' : 'none';
+    games.forEach(img => {
+        img.style.display = img.alt.toLowerCase().includes(searchTerm)
+            ? "block"
+            : "none";
     });
 });
 
-// SETTINGS
+
+// SETTINGS PANEL
 function openSettings() {
     document.getElementById("settingsPanel").classList.add("open");
     document.getElementById("settingsBackdrop").classList.add("open");
+    document.querySelector(".settings-btn").classList.add("spin");
 }
 
 function closeSettings() {
     document.getElementById("settingsPanel").classList.remove("open");
     document.getElementById("settingsBackdrop").classList.remove("open");
+    document.querySelector(".settings-btn").classList.remove("spin");
 }
 
+
+// BACKGROUND COLOR
 function changeColor(color, element) {
-    document.body.style.backgroundColor = color;
+    document.body.style.background = color;
     localStorage.setItem("av-bg", color);
 
-    document.querySelectorAll(".color-option").forEach(opt =>
+    document.querySelectorAll(".color-option").forEach(opt => 
         opt.classList.remove("selected")
     );
-
     element.classList.add("selected");
 }
 
-// Restore saved background
+
+// RESTORE SAVED COLOR
 window.addEventListener("DOMContentLoaded", () => {
     const saved = localStorage.getItem("av-bg");
-    if (saved) document.body.style.backgroundColor = saved;
+    if (saved) document.body.style.background = saved;
 });

@@ -4,87 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AV Games</title>
+  <link rel="icon" type="image/png" href="images/av-games-favicon.png">
   <link rel="stylesheet" href="main.css">
-  <link rel="icon" href="images/logo.png">
+  <script src="https://kit.fontawesome.com/a2d9d5a4a0.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <!-- ===== WELCOME SCREEN ===== -->
-  <div id="welcome-screen">
-    <div class="welcome-content">
-      <h1>Welcome to <span>AV Games</span>!</h1>
-    </div>
-  </div>
-
-  <!-- ===== NAVIGATION BAR ===== -->
+  <!-- Header -->
   <nav>
-    <img src="images/logo.png" alt="Logo" class="logo">
+    <img src="images/av-games-logo.png" alt="Logo" class="logo">
     <h1 class="site-title">AV Games</h1>
   </nav>
 
-  <!-- ===== FEATURED / POPULAR GAMES ===== -->
+  <!-- Featured Section -->
   <section class="featured">
     <h1>Popular:</h1>
-    <div id="games">
-      <a href="games/bob-the-robber-2.html">
-        <img src="images/bob2.jpg" alt="Bob The Robber 2">
-        <div class="play-button">▶</div>
-      </a>
-      <a href="games/vex7.html">
-        <img src="images/vex7.jpg" alt="Vex 7">
-        <div class="play-button">▶</div>
-      </a>
-      <a href="games/vex6.html">
-        <img src="images/vex6.jpg" alt="Vex 6">
-        <div class="play-button">▶</div>
-      </a>
-      <a href="games/truck-trials.html">
-        <img src="images/truck-trials.jpg" alt="Truck Trials">
-        <div class="play-button">▶</div>
-      </a>
-      <a href="games/moto-x3m.html">
-        <img src="images/moto-x3m.jpg" alt="Moto X3M">
-        <div class="play-button">▶</div>
-      </a>
-      <a href="games/basketball-stars.html">
-        <img src="images/basketball-stars.jpg" alt="Basketball Stars">
-        <div class="play-button">▶</div>
-      </a>
+    <div id="games" class="games-grid">
+      <a href="games/bob-the-robber-2/"><img src="images/bob-the-robber-2.png" alt="Bob the Robber 2"></a>
+      <a href="games/vex6/"><img src="images/vex6.jpeg" alt="Vex 6"></a>
+      <a href="games/drive-mad/"><img src="images/drive-mad.jpg" alt="Drive Mad"></a>
+      <a href="games/moto-x3m/"><img src="images/moto-x3m.jpg" alt="Moto X3M"></a>
+      <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg" alt="Retro Bowl"></a>
     </div>
   </section>
 
-  <!-- ===== SEARCH BAR ===== -->
+  <!-- Search -->
   <div class="search">
     <input type="text" placeholder="Search...">
-    <button>🔍</button>
+    <button><i class="fas fa-search"></i></button>
   </div>
 
-  <!-- ===== SETTINGS BUTTON ===== -->
-  <button class="settings-btn" onclick="openSettings()">⚙️</button>
+  <!-- Settings Button -->
+  <button class="settings-btn" onclick="openSettings()"><i class="fas fa-cog"></i></button>
 
-  <!-- ===== SETTINGS BACKDROP ===== -->
+  <!-- Settings Backdrop -->
   <div id="settingsBackdrop" class="settings-backdrop" onclick="closeSettings()"></div>
 
-  <!-- ===== SETTINGS PANEL ===== -->
+  <!-- Settings Panel -->
   <div id="settingsPanel" class="settings-panel">
     <h2>Settings</h2>
-    <h3>Background Color:</h3>
+    <h3>Background Style</h3>
     <div class="color-grid">
-      <div class="color-option" onclick="changeColor('#1b1b1b', this)">
+      <div class="color-option" onclick="setBackground('pattern', this)">
+        <div class="color-preview" style="background-image:url('images/pattern-bg.png'); background-size:cover;"></div>
+        <span>Pattern</span>
+      </div>
+      <div class="color-option" onclick="setBackground('#1b1b1b', this)">
         <div class="color-preview" style="background-color:#1b1b1b;"></div>
         <span>Black</span>
       </div>
-      <div class="color-option" onclick="changeColor('#111827', this)">
+      <div class="color-option" onclick="setBackground('#111827', this)">
         <div class="color-preview" style="background-color:#111827;"></div>
         <span>Dark</span>
       </div>
-      <div class="color-option" onclick="changeColor('#1e40af', this)">
+      <div class="color-option" onclick="setBackground('#1e40af', this)">
         <div class="color-preview" style="background-color:#1e40af;"></div>
         <span>Blue</span>
-      </div>
-      <div class="color-option" onclick="changeColor('#6b21a8', this)">
-        <div class="color-preview" style="background-color:#6b21a8;"></div>
-        <span>Purple</span>
       </div>
     </div>
   </div>

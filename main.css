@@ -2,22 +2,78 @@
 
 :root {
     --font-family: 'Montserrat', sans-serif;
-    --glow-strength: 1; /* 0.4 = low, 1 = medium, 1.6 = high */
+    --glow-strength: 1;
 }
 
-/* THEMES */
+/* ★ STAR LAYERS */
+#stars, #stars2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    display: none;
+}
+
+/* small distant stars */
+#stars {
+    background: transparent url("data:image/svg+xml,\
+    <svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'>\
+    <circle cx='1' cy='1' r='1' fill='white'/>\
+    </svg>") repeat;
+    opacity: 0.15;
+    animation: twinkle 6s infinite alternate ease-in-out;
+}
+
+/* brighter nearby stars */
+#stars2 {
+    background: transparent url("data:image/svg+xml,\
+    <svg xmlns='http://www.w3.org/2000/svg' width='2' height='2'>\
+    <circle cx='1' cy='1' r='1' fill='white'/>\
+    </svg>") repeat;
+    opacity: 0.08;
+    animation: twinkle 9s infinite alternate ease-in-out;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.06; }
+    100% { opacity: 0.15; }
+}
+
+/* SHOW STARS ONLY ON SPACE + MIDNIGHT + NEON */
+body.theme-midnight #stars,
+body.theme-midnight #stars2,
+body.theme-neon #stars,
+body.theme-neon #stars2,
+body.theme-space #stars,
+body.theme-space #stars2 {
+    display: block;
+}
+
+/* ★ THEMES */
+
+/* Midnight (deep dark) */
 body.theme-midnight {
-    background-color: #1b1b1b;
+    background: radial-gradient(circle at center, #090914, #010103 80%);
 }
 
+/* Space (mystic nebula) */
 body.theme-space {
     background: radial-gradient(circle at top, #1d1b3f, #050816 60%);
 }
 
+/* Neon (glowing cosmic) */
 body.theme-neon {
-    background: radial-gradient(circle at top, #020617, #020617 40%, #0b1120 100%);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(90, 0, 255, 0.8), transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(0, 180, 255, 0.7), transparent 70%),
+        #050010;
+    background-blend-mode: screen;
 }
 
+/* Grey (clean minimal) */
 body.theme-grey {
     background: #111827;
 }
@@ -46,12 +102,13 @@ nav {
     z-index: 1000;
 }
 
-/* LOGO WITH PURPLE-BLUE GLOW */
+/* LOGO GLOW */
 nav .logo {
     height: 70%;
     width: auto;
     margin-right: 1vw;
     border-radius: .5vw;
+
     filter: drop-shadow(0 0 calc(1vw * var(--glow-strength)) rgba(120, 50, 255, 0.8))
             drop-shadow(0 0 calc(2vw * var(--glow-strength)) rgba(80, 100, 255, 0.5));
 }
@@ -70,15 +127,11 @@ nav h1 {
     font-size: 2.2vw;
     margin-right: 2vw;
     cursor: pointer;
-    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .settings-btn.spin i {
     animation: spin 1.2s linear infinite;
-}
-
-.settings-btn:hover i {
-    text-shadow: 0 0 1vw rgba(120, 50, 255, 0.7);
 }
 
 @keyframes spin {
@@ -111,15 +164,15 @@ nav h1 {
     background: rgba(0,0,0,0.5);
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s;
+    transition: .3s;
     z-index: 1500;
 }
+
 .settings-backdrop.open {
     opacity: 1;
     visibility: visible;
 }
 
-/* SETTINGS SECTIONS */
 .settings-section {
     margin-bottom: 2vw;
 }
@@ -131,7 +184,6 @@ nav h1 {
 
 .option-row {
     display: flex;
-    flex-wrap: wrap;
     gap: 0.5vw;
     margin-bottom: 0.5vw;
 }
@@ -144,17 +196,11 @@ nav h1 {
     padding: 0.4vw 0.9vw;
     font-size: 0.9vw;
     cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pill:hover {
-    border-color: rgba(120, 50, 255, 0.8);
-    box-shadow: 0 0 .8vw rgba(120, 50, 255, 0.5);
+    transition: .2s;
 }
 
 .pill.active {
     background: linear-gradient(135deg, #4c1d95, #1d4ed8);
-    border-color: transparent;
     box-shadow: 0 0 1.2vw rgba(120, 50, 255, 0.9);
 }
 
@@ -165,31 +211,32 @@ nav h1 {
     display: flex;
     flex-wrap: wrap;
 }
+
 .featured h1 {
     width: 100%;
     font-size: 3.5vw;
     margin-bottom: 1vw;
 }
+
 .featured img {
     width: 12.5vw;
     height: 12.5vw;
     border-radius: 1vw;
     margin: 0.5vw;
 }
+
 .featured .row img {
     width: 26vw;
     height: 26vw;
 }
 
 /* SEARCH */
-.content {
-    padding-bottom: 4vw;
-}
 .search {
     margin-left: 2vw;
     margin-top: 2vw;
     display: flex;
 }
+
 .search input {
     background: #222;
     color: white;
@@ -198,6 +245,7 @@ nav h1 {
     font-size: 1.5vw;
     border-radius: 1vw 0 0 1vw;
 }
+
 .search button {
     background: white;
     color: black;
@@ -214,6 +262,7 @@ nav h1 {
     justify-content: center;
     padding-bottom: 5vw;
 }
+
 #games img {
     width: 15.6vw;
     height: 15.6vw;

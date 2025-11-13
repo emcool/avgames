@@ -1,73 +1,65 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AV Games</title>
-
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+
+    <!-- SETTINGS PANEL -->
+    <div class="settings-backdrop" id="settingsBackdrop" onclick="closeSettings()"></div>
+
+    <div class="settings-panel" id="settingsPanel">
+        <h2>Settings</h2>
+        <h3>Background Color</h3>
+
+        <div class="color-grid">
+            <div class="color-option" onclick="changeColor('#1b1b1b', this)">
+                <div class="color-preview" style="background:#1b1b1b"></div>
+                <p>Default</p>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#000000', this)">
+                <div class="color-preview" style="background:#000"></div>
+                <p>Black</p>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#1e3a8a', this)">
+                <div class="color-preview" style="background:#1e3a8a"></div>
+                <p>Blue</p>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#166534', this)">
+                <div class="color-preview" style="background:#166534"></div>
+                <p>Green</p>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#581c87', this)">
+                <div class="color-preview" style="background:#581c87"></div>
+                <p>Purple</p>
+            </div>
+        </div>
+    </div>
+
 
     <!-- NAV BAR -->
     <nav>
         <img src="images/logo.png" alt="logo">
         <h1>AV GAMES</h1>
 
-        <!-- Settings gear -->
         <button class="settings-btn" onclick="openSettings()">
             <i class="fa-solid fa-gear"></i>
         </button>
     </nav>
 
-    <!-- Settings backdrop -->
-    <div class="settings-backdrop" id="settingsBackdrop" onclick="closeSettings()"></div>
 
-    <!-- Settings panel -->
-    <div class="settings-panel" id="settingsPanel">
 
-        <div class="settings-header">
-            <h2>Settings</h2>
-            <button class="close-btn" onclick="closeSettings()">&times;</button>
-        </div>
-
-        <h3>Background Colors</h3>
-
-        <div class="color-grid">
-
-            <div class="color-option" onclick="changeColor('#000000', this)">
-                <div class="color-preview" style="background:#000000;"></div>
-                <span>Black</span>
-            </div>
-
-            <div class="color-option" onclick="changeColor('#1a1a1a', this)">
-                <div class="color-preview" style="background:#1a1a1a;"></div>
-                <span>Charcoal</span>
-            </div>
-
-            <div class="color-option" onclick="changeColor('#1e3a8a', this)">
-                <div class="color-preview" style="background:#1e3a8a;"></div>
-                <span>Blue</span>
-            </div>
-
-            <div class="color-option" onclick="changeColor('#166534', this)">
-                <div class="color-preview" style="background:#166534;"></div>
-                <span>Green</span>
-            </div>
-
-            <div class="color-option" onclick="changeColor('#581c87', this)">
-                <div class="color-preview" style="background:#581c87;"></div>
-                <span>Purple</span>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Featured section -->
+    <!-- FEATURED SECTION -->
     <div class="featured">
         <h1>Popular:</h1>
 
@@ -110,14 +102,15 @@
         </div>
     </div>
 
-    <!-- Search + Games -->
-    <div class="content">
 
+
+    <!-- SEARCH + GAME LIST -->
+    <div class="content">
         <hr>
 
         <div class="search">
             <input type="text" placeholder="Search...">
-            <button><i class="fa-solid fa-search"></i></button>
+            <button><i class="fas fa-search"></i></button>
         </div>
 
         <div id="games">

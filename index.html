@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AV Games</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/av-games-favicon.png">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
 </head>
 
 <body>
 
-    <!-- STAR LAYERS (behind everything) -->
+    <!-- STAR LAYERS -->
     <div id="stars"></div>
     <div id="stars2"></div>
+
+    <!-- SHOOTING STAR -->
+    <div id="shooting-star"></div>
 
     <!-- SETTINGS BACKDROP -->
     <div class="settings-backdrop" id="settingsBackdrop" onclick="closeSettings()"></div>
@@ -27,7 +27,7 @@
     <div class="settings-panel" id="settingsPanel">
         <h2>Settings</h2>
 
-        <!-- THEME SECTION -->
+        <!-- THEMES -->
         <div class="settings-section">
             <h3>Theme</h3>
             <div class="option-row">
@@ -42,9 +42,12 @@
                 <button class="pill theme-option" data-theme="neonpulse">Neon Pulse</button>
                 <button class="pill theme-option" data-theme="greyminimal">Grey Minimal</button>
             </div>
+            <div class="option-row">
+                <button class="pill theme-option" data-theme="eventhorizon">Event Horizon</button>
+            </div>
         </div>
 
-        <!-- FONT SECTION -->
+        <!-- FONT -->
         <div class="settings-section">
             <h3>Font</h3>
             <div class="option-row">
@@ -54,7 +57,7 @@
             </div>
         </div>
 
-        <!-- GLOW INTENSITY SECTION -->
+        <!-- GLOW -->
         <div class="settings-section">
             <h3>Glow Intensity</h3>
             <div class="option-row">
@@ -65,76 +68,55 @@
         </div>
     </div>
 
-    <!-- NAV BAR -->
+    <!-- NAV -->
     <nav>
-        <img src="images/av-games-logo.png" alt="AV Games Logo" class="logo">
+        <img src="images/av-games-logo.png" class="logo" alt="Logo">
         <h1>AV GAMES</h1>
-
-        <button class="settings-btn" onclick="openSettings()">
-            <i class="fa-solid fa-gear"></i>
-        </button>
+        <button class="settings-btn" onclick="openSettings()"><i class="fa-solid fa-gear"></i></button>
     </nav>
 
-    <!-- FEATURED SECTION -->
+    <!-- FEATURED -->
     <div class="featured">
         <h1>Popular:</h1>
 
         <div class="column">
-            <a href="games/bob-the-robber-2/">
-                <img src="images/bob-the-robber-2.png" alt="Bob the Robber 2">
-                <div class="play-button"><i class="fa-solid fa-play"></i></div>
-            </a>
-            <a href="games/vex7/">
-                <img src="images/vex7.jpeg" alt="Vex 7">
-                <div class="play-button"><i class="fa-solid fa-play"></i></div>
-            </a>
+            <a href="games/bob-the-robber-2/"><img src="images/bob-the-robber-2.png"><div class="play-button"><i class="fa-solid fa-play"></i></div></a>
+            <a href="games/vex7/"><img src="images/vex7.jpeg"><div class="play-button"><i class="fa-solid fa-play"></i></div></a>
         </div>
 
         <div class="row">
-            <a href="games/vex6">
-                <img src="images/vex6.jpeg" alt="Vex 6">
-                <div class="play-button"><i class="fa-solid fa-play"></i></div>
-            </a>
+            <a href="games/vex6"><img src="images/vex6.jpeg"><div class="play-button"><i class="fa-solid fa-play"></i></div></a>
         </div>
 
         <div class="row">
-            <a href="games/drive-mad/">
-                <img src="images/drive-mad.jpg" alt="Drive Mad">
-                <div class="play-button"><i class="fa-solid fa-play"></i></div>
-            </a>
+            <a href="games/drive-mad/"><img src="images/drive-mad.jpg"><div class="play-button"><i class="fa-solid fa-play"></i></div></a>
         </div>
 
         <div class="column">
-            <a href="games/moto-x3m/">
-                <img src="images/moto-x3m.jpg" alt="Moto X3M">
-                <div class="play-button"><i class="fa-solid fa-play"></i></div>
-            </a>
-            <a href="games/retro-bowl/">
-                <img src="images/retro-bowl.jpg" alt="Retro Bowl">
-                <div class="play-button"><i class="fa-solid fa-play"></i></div>
-            </a>
+            <a href="games/moto-x3m/"><img src="images/moto-x3m.jpg"><div class="play-button"><i class="fa-solid fa-play"></i></div></a>
+            <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg"><div class="play-button"><i class="fa-solid fa-play"></i></div></a>
         </div>
+
     </div>
 
     <!-- MAIN CONTENT -->
     <div class="content">
         <hr>
-
         <div class="search">
             <input type="text" placeholder="Search...">
             <button><i class="fas fa-search"></i></button>
         </div>
 
         <div id="games">
-            <a href="games/bob-the-robber-2/"><img src="images/bob-the-robber-2.png" alt="Bob the Robber 2"></a>
-            <a href="games/vex7/"><img src="images/vex7.jpeg" alt="Vex 7"></a>
-            <a href="games/vex6/"><img src="images/vex6.jpeg" alt="Vex 6"></a>
-            <a href="games/"><img src="images/mc.png" alt="Minecraft"></a>
-            <a href="games/moto-x3m/"><img src="images/moto-x3m.jpg" alt="Moto X3M"></a>
-            <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg" alt="Retro Bowl"></a>
-            <a href="games/drive-mad/"><img src="images/drive-mad.jpg" alt="Drive Mad"></a>
-            <a href="games/slope/"><img src="images/slope.jpg" alt="Slope"></a>
-            <a href="games/motox3m2/"><img src="images/motox3m2.jpg" alt="Moto X3M 2"></a>
+            <a href="games/bob-the-robber-2/"><img src="images/bob-the-robber-2.png" alt="bob"></a>
+            <a href="games/vex7/"><img src="images/vex7.jpeg" alt="vex7"></a>
+            <a href="games/vex6/"><img src="images/vex6.jpeg" alt="vex6"></a>
+            <a href="games/"><img src="images/mc.png" alt="minecraft"></a>
+            <a href="games/moto-x3m/"><img src="images/moto-x3m.jpg" alt="moto"></a>
+            <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg" alt="retro"></a>
+            <a href="games/drive-mad/"><img src="images/drive-mad.jpg" alt="drive"></a>
+            <a href="games/slope/"><img src="images/slope.jpg" alt="slope"></a>
+            <a href="games/motox3m2/"><img src="images/motox3m2.jpg" alt="motox3m2"></a>
         </div>
     </div>
 

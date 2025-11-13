@@ -5,7 +5,10 @@
     --glow-strength: 1;
 }
 
-/* ★ STAR LAYERS */
+/* ===================== */
+/* STAR LAYERS (DIM, PURPLE/BLUE) */
+/* ===================== */
+
 #stars, #stars2 {
     position: fixed;
     top: 0;
@@ -17,69 +20,142 @@
     display: none;
 }
 
-/* small distant stars */
+/* distant stars */
 #stars {
     background: transparent url("data:image/svg+xml,\
     <svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'>\
-    <circle cx='1' cy='1' r='1' fill='white'/>\
+    <circle cx='1' cy='1' r='1' fill='rgba(150,120,255,0.3)'/>\
     </svg>") repeat;
-    opacity: 0.15;
-    animation: twinkle 6s infinite alternate ease-in-out;
+    opacity: 0.05;
+    animation: twinkle 7s infinite alternate ease-in-out, drift1 90s linear infinite;
 }
 
-/* brighter nearby stars */
+/* closer stars */
 #stars2 {
     background: transparent url("data:image/svg+xml,\
     <svg xmlns='http://www.w3.org/2000/svg' width='2' height='2'>\
-    <circle cx='1' cy='1' r='1' fill='white'/>\
+    <circle cx='1' cy='1' r='1' fill='rgba(120,160,255,0.25)'/>\
     </svg>") repeat;
-    opacity: 0.08;
-    animation: twinkle 9s infinite alternate ease-in-out;
+    opacity: 0.04;
+    animation: twinkle 10s infinite alternate ease-in-out, drift2 140s linear infinite;
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.06; }
-    100% { opacity: 0.15; }
+    0% { opacity: 0.02; }
+    100% { opacity: 0.06; }
 }
 
-/* SHOW STARS ONLY ON SPACE + MIDNIGHT + NEON */
-body.theme-midnight #stars,
-body.theme-midnight #stars2,
-body.theme-neon #stars,
-body.theme-neon #stars2,
-body.theme-space #stars,
-body.theme-space #stars2 {
+@keyframes drift1 {
+    0% { background-position: 0 0; }
+    100% { background-position: 200px 300px; }
+}
+
+@keyframes drift2 {
+    0% { background-position: 0 0; }
+    100% { background-position: -250px -200px; }
+}
+
+/* Stars visible on space-ish themes */
+body.theme-midnightplus #stars,
+body.theme-midnightplus #stars2,
+body.theme-cosmicdrift #stars,
+body.theme-cosmicdrift #stars2,
+body.theme-galaxyparallax #stars,
+body.theme-galaxyparallax #stars2,
+body.theme-warpcore #stars,
+body.theme-warpcore #stars2,
+body.theme-neonpulse #stars,
+body.theme-neonpulse #stars2 {
     display: block;
 }
 
-/* ★ THEMES */
+/* ===================== */
+/* THEMES */
+/* ===================== */
 
-/* Midnight (deep dark) */
-body.theme-midnight {
-    background: radial-gradient(circle at center, #090914, #010103 80%);
+/* Midnight+ — very dark, soft glow center */
+body.theme-midnightplus {
+    background: radial-gradient(circle at center, #05050b, #000002 75%);
 }
 
-/* Space (mystic nebula) */
-body.theme-space {
-    background: radial-gradient(circle at top, #1d1b3f, #050816 60%);
-}
-
-/* Neon (glowing cosmic) */
-body.theme-neon {
+/* Cosmic Drift — soft lofi nebula drifting */
+body.theme-cosmicdrift {
     background:
-        radial-gradient(circle at 20% 20%, rgba(90, 0, 255, 0.8), transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(0, 180, 255, 0.7), transparent 70%),
-        #050010;
-    background-blend-mode: screen;
+        radial-gradient(circle at 20% 20%, rgba(70, 40, 120, 0.75), transparent 70%),
+        radial-gradient(circle at 80% 80%, rgba(20, 60, 120, 0.7), transparent 75%),
+        #050510;
+    background-size: 140% 140%;
+    animation: cosmicDrift 50s ease-in-out infinite;
 }
 
-/* Grey (clean minimal) */
-body.theme-grey {
+@keyframes cosmicDrift {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 50% 60%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Galaxy Parallax — darker with subtle breathing light */
+body.theme-galaxyparallax {
+    background:
+        radial-gradient(circle at 30% 10%, rgba(120, 80, 200, 0.35), transparent 70%),
+        radial-gradient(circle at 70% 90%, rgba(40, 140, 255, 0.3), transparent 70%),
+        #02020a;
+    animation: galaxyPulse 25s ease-in-out infinite;
+}
+
+@keyframes galaxyPulse {
+    0%   { filter: brightness(0.95); }
+    50%  { filter: brightness(1.05); }
+    100% { filter: brightness(0.95); }
+}
+
+/* Warp Core — animated swirling energy */
+body.theme-warpcore {
+    background:
+        radial-gradient(circle at center, #111827, #020617 70%);
+    position: relative;
+    overflow: hidden;
+}
+
+body.theme-warpcore::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    background: conic-gradient(
+        from 0deg,
+        rgba(126, 34, 206, 0.2),
+        rgba(59, 130, 246, 0.5),
+        rgba(14, 165, 233, 0.3),
+        rgba(126, 34, 206, 0.2)
+    );
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    animation: warpSpin 40s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes warpSpin {
+    0%   { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1.1); }
+}
+
+/* Neon Pulse — bright purple/blue glow */
+body.theme-neonpulse {
+    background:
+        radial-gradient(circle at 25% 20%, rgba(168, 85, 247, 0.85), transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.8), transparent 65%),
+        #020015;
+}
+
+/* Grey Minimal — clean fallback theme */
+body.theme-greyminimal {
     background: #111827;
 }
 
-/* GLOBAL */
+/* Fallback body style (just in case) */
 body {
+    background-color: #1b1b1b;
     font-family: var(--font-family);
     margin: 0;
     padding: 0;
@@ -87,7 +163,10 @@ body {
     overflow-x: hidden;
 }
 
-/* NAV */
+/* ===================== */
+/* NAVBAR */
+/* ===================== */
+
 nav {
     position: fixed;
     top: 0;
@@ -97,18 +176,16 @@ nav {
     display: flex;
     align-items: center;
     padding-left: 1.5vw;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
     backdrop-filter: blur(10px);
     z-index: 1000;
 }
 
-/* LOGO GLOW */
 nav .logo {
     height: 70%;
     width: auto;
     margin-right: 1vw;
     border-radius: .5vw;
-
     filter: drop-shadow(0 0 calc(1vw * var(--glow-strength)) rgba(120, 50, 255, 0.8))
             drop-shadow(0 0 calc(2vw * var(--glow-strength)) rgba(80, 100, 255, 0.5));
 }
@@ -119,7 +196,6 @@ nav h1 {
     flex-grow: 1;
 }
 
-/* SETTINGS BUTTON */
 .settings-btn {
     background: none;
     border: none;
@@ -127,18 +203,25 @@ nav h1 {
     font-size: 2.2vw;
     margin-right: 2vw;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 .settings-btn.spin i {
     animation: spin 1.2s linear infinite;
 }
 
+.settings-btn:hover i {
+    text-shadow: 0 0 1vw rgba(120, 50, 255, 0.7);
+}
+
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
+/* ===================== */
 /* SETTINGS PANEL */
+/* ===================== */
+
 .settings-panel {
     position: fixed;
     top: 0;
@@ -153,7 +236,9 @@ nav h1 {
     box-sizing: border-box;
 }
 
-.settings-panel.open { right: 0; }
+.settings-panel.open {
+    right: 0;
+}
 
 .settings-backdrop {
     position: fixed;
@@ -173,6 +258,12 @@ nav h1 {
     visibility: visible;
 }
 
+.settings-panel h2 {
+    margin-top: 0;
+    margin-bottom: 1.5vw;
+    font-size: 1.6vw;
+}
+
 .settings-section {
     margin-bottom: 2vw;
 }
@@ -184,6 +275,7 @@ nav h1 {
 
 .option-row {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5vw;
     margin-bottom: 0.5vw;
 }
@@ -196,20 +288,31 @@ nav h1 {
     padding: 0.4vw 0.9vw;
     font-size: 0.9vw;
     cursor: pointer;
-    transition: .2s;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pill:hover {
+    border-color: rgba(120, 50, 255, 0.8);
+    box-shadow: 0 0 .8vw rgba(120, 50, 255, 0.5);
 }
 
 .pill.active {
     background: linear-gradient(135deg, #4c1d95, #1d4ed8);
+    border-color: transparent;
     box-shadow: 0 0 1.2vw rgba(120, 50, 255, 0.9);
 }
 
-/* FEATURED */
+/* ===================== */
+/* FEATURED SECTION */
+/* ===================== */
+
 .featured {
     padding-top: 7vw;
     padding-left: 2vw;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 .featured h1 {
@@ -218,11 +321,29 @@ nav h1 {
     margin-bottom: 1vw;
 }
 
+.featured .column {
+    display: flex;
+    flex-direction: column;
+}
+
+.featured .row {
+    display: flex;
+    flex-direction: row;
+}
+
 .featured img {
     width: 12.5vw;
     height: 12.5vw;
     border-radius: 1vw;
     margin: 0.5vw;
+    cursor: pointer;
+    transition: transform .2s, filter .2s, box-shadow .2s;
+}
+
+.featured img:hover {
+    transform: scale(1.02);
+    filter: brightness(1.05);
+    box-shadow: 0 0 1.5vw rgba(120, 50, 255, 0.4);
 }
 
 .featured .row img {
@@ -230,7 +351,41 @@ nav h1 {
     height: 26vw;
 }
 
-/* SEARCH */
+.featured a {
+    position: relative;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: .2s ease;
+    color: white;
+}
+
+.featured a:hover .play-button {
+    opacity: 1;
+}
+
+/* ===================== */
+/* SEARCH & GAMES */
+/* ===================== */
+
+.content {
+    padding-bottom: 4vw;
+    position: relative;
+    z-index: 1;
+}
+
+.content hr {
+    border: 0;
+    height: 4px;
+    background-image: linear-gradient(to right, rgba(0,0,0,0), white, rgba(0,0,0,0));
+    margin: 1vw 2vw;
+}
+
 .search {
     margin-left: 2vw;
     margin-top: 2vw;
@@ -244,6 +399,11 @@ nav h1 {
     padding: .8vw 1.5vw;
     font-size: 1.5vw;
     border-radius: 1vw 0 0 1vw;
+    outline: none;
+}
+
+.search input:focus {
+    box-shadow: 0 0 1vw rgba(120, 50, 255, 0.6);
 }
 
 .search button {
@@ -252,9 +412,9 @@ nav h1 {
     padding: .8vw 1vw;
     border: none;
     border-radius: 0 1vw 1vw 0;
+    cursor: pointer;
 }
 
-/* GAME GRID */
 #games {
     margin-top: 1vw;
     display: flex;
@@ -268,4 +428,11 @@ nav h1 {
     height: 15.6vw;
     margin: 0.5vw;
     border-radius: 1vw;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+#games img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 1.2vw rgba(120, 50, 255, 0.5);
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AV Games</title>
 
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
 </head>
 <body>
@@ -20,9 +20,7 @@
     </div>
 
     <!-- SETTINGS BUTTON -->
-    <button class="settings-btn" onclick="openSettings()">
-        <i class="fas fa-cog"></i>
-    </button>
+    <button class="settings-btn" onclick="openSettings()"><i class="fas fa-cog"></i></button>
 
     <!-- SETTINGS BACKDROP -->
     <div id="settingsBackdrop" class="settings-backdrop" onclick="closeSettings()"></div>
@@ -31,43 +29,41 @@
     <div id="settingsPanel" class="settings-panel">
         <div class="settings-header">
             <h2><i class="fas fa-cog"></i> Settings</h2>
-            <button onclick="closeSettings()" class="close-btn">
-                <i class="fas fa-times"></i>
-            </button>
+            <button onclick="closeSettings()" class="close-btn"><i class="fas fa-times"></i></button>
         </div>
 
         <h3>Background Color</h3>
         <div class="color-grid">
             <div class="color-option" onclick="changeColor('#1b1b1b', this)">
                 <div class="color-preview" style="background:#1b1b1b;"></div>
-                <span>Default</span>
+                Default
             </div>
             <div class="color-option" onclick="changeColor('#000000', this)">
                 <div class="color-preview" style="background:#000;"></div>
-                <span>Black</span>
+                Black
             </div>
             <div class="color-option" onclick="changeColor('#1e3a8a', this)">
                 <div class="color-preview" style="background:#1e3a8a;"></div>
-                <span>Blue</span>
+                Blue
             </div>
             <div class="color-option" onclick="changeColor('#166534', this)">
                 <div class="color-preview" style="background:#166534;"></div>
-                <span>Green</span>
+                Green
             </div>
             <div class="color-option" onclick="changeColor('#581c87', this)">
                 <div class="color-preview" style="background:#581c87;"></div>
-                <span>Purple</span>
+                Purple
             </div>
         </div>
     </div>
 
     <!-- NAVIGATION -->
     <nav>
-        <img src="images/logo.png">
+        <img src="images/logo.png" alt="logo">
         <h1>AV GAMES</h1>
     </nav>
 
-    <!-- FEATURED GAMES -->
+    <!-- FEATURED SECTION -->
     <div class="featured">
         <h1>Popular:</h1>
 
@@ -76,7 +72,6 @@
                 <img src="images/bob-the-robber-2.png" alt="bob the robber 2">
                 <div class="play-button"><i class="fa-solid fa-play"></i></div>
             </a>
-
             <a href="games/vex7/">
                 <img src="images/vex7.jpeg" alt="vex 7">
                 <div class="play-button"><i class="fa-solid fa-play"></i></div>
@@ -102,7 +97,6 @@
                 <img src="images/moto-x3m.jpg" alt="moto x3m">
                 <div class="play-button"><i class="fa-solid fa-play"></i></div>
             </a>
-
             <a href="games/retro-bowl/">
                 <img src="images/retro-bowl.jpg" alt="retro bowl">
                 <div class="play-button"><i class="fa-solid fa-play"></i></div>
@@ -110,17 +104,15 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
+    <!-- CONTENT -->
     <div class="content">
         <hr>
 
-        <!-- SEARCH -->
         <div class="search">
             <input type="text" placeholder="Search...">
             <button><i class="fas fa-search"></i></button>
         </div>
 
-        <!-- ALL GAMES GRID -->
         <div id="games">
             <a href="games/bob-the-robber-2/"><img src="images/bob-the-robber-2.png" alt="bob the robber 2"></a>
             <a href="games/vex7/"><img src="images/vex7.jpeg" alt="vex 7"></a>
@@ -132,7 +124,6 @@
             <a href="games/slope/"><img src="images/slope.jpg" alt="slope"></a>
             <a href="games/motox3m2/"><img src="images/motox3m2.jpg" alt="moto x3m2"></a>
         </div>
-
     </div>
 
     <script src="script.js"></script>

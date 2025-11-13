@@ -11,7 +11,6 @@ input.addEventListener("input", () => {
     });
 });
 
-
 // SETTINGS PANEL
 function openSettings() {
     document.getElementById("settingsPanel").classList.add("open");
@@ -25,7 +24,6 @@ function closeSettings() {
     document.querySelector(".settings-btn").classList.remove("spin");
 }
 
-
 // BACKGROUND COLOR
 function changeColor(color, element) {
     document.body.style.background = color;
@@ -36,7 +34,6 @@ function changeColor(color, element) {
     );
     element.classList.add("selected");
 }
-
 
 // RESTORE SAVED COLOR
 window.addEventListener("DOMContentLoaded", () => {

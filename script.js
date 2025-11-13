@@ -8,9 +8,8 @@ if (input) {
     input.addEventListener("input", () => {
         const searchTerm = input.value.toLowerCase();
         games.forEach((game) => {
-            game.style.display = game.alt.toLowerCase().includes(searchTerm)
-                ? "block"
-                : "none";
+            const alt = (game.alt || "").toLowerCase();
+            game.style.display = alt.includes(searchTerm) ? "block" : "none";
         });
     });
 }
@@ -33,36 +32,32 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ============================================
-   STAR SHOOTING (EVERY 10 SECONDS)
+   SHOOTING STAR (EVERY 10s)
 ============================================ */
 function createShootingStar() {
     const star = document.getElementById("shooting-star");
-
     if (!star) return;
 
-    // Reset position each time
     const startX = Math.random() * window.innerWidth * 0.5;
     const startY = Math.random() * window.innerHeight * 0.4;
 
     star.style.left = startX + "px";
     star.style.top = startY + "px";
 
+    // reset animation
     star.style.animation = "none";
-
-    // Restart animation
     requestAnimationFrame(() => {
         star.style.animation = "shootingStar 1s linear";
     });
 }
 
-// Trigger every 10 seconds
 setInterval(createShootingStar, 10000);
 
 /* ============================================
-   THEME SWITCHING SYSTEM
+   THEMES + FONTS
 ============================================ */
 
-// All supported themes
+// All theme keys
 const themes = [
     "midnightplus",
     "cosmicdrift",
@@ -73,28 +68,63 @@ const themes = [
     "aurorapulse"
 ];
 
-// Load saved theme
+// Font mapping for CSS
+const fonts = {
+    montserrat: "'Montserrat', sans-serif",
+    audiowide: "'Audiowide', cursive",
+    orbitron: "'Orbitron', sans-serif",
+    exo2: "'Exo 2', sans-serif",
+    quicksand: "'Quicksand', sans-serif"
+};
+
+function applyTheme(themeKey) {
+    const body = document.body;
+
+    themes.forEach(t => body.classList.remove("theme-" + t));
+    body.classList.add("theme-" + themeKey);
+
+    localStorage.setItem("av-theme", themeKey);
+
+    document.querySelectorAll(".theme-option").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.theme === themeKey);
+    });
+}
+
+function applyFont(fontKey) {
+    const fontValue = fonts[fontKey] || fonts.montserrat;
+    document.documentElement.style.setProperty("--font-family", fontValue);
+
+    localStorage.setItem("av-font", fontKey);
+
+    document.querySelectorAll(".font-option").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.font === fontKey);
+    });
+}
+
+/* ============================================
+   INIT ON LOAD
+============================================ */
 window.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem("av-theme");
-    if (savedTheme && themes.includes(savedTheme)) {
-        document.body.className = "theme-" + savedTheme;
-    }
-});
+    // Load saved theme + font
+    const savedTheme = localStorage.getItem("av-theme") || "midnightplus";
+    const savedFont  = localStorage.getItem("av-font")  || "montserrat";
 
-// Handle theme clicks
-document.querySelectorAll(".theme-option").forEach(button => {
-    button.addEventListener("click", () => {
-        const selectedTheme = button.getAttribute("data-theme");
+    applyTheme(savedTheme);
+    applyFont(savedFont);
 
-        // Remove old theme classes
-        themes.forEach(t => {
-            document.body.classList.remove("theme-" + t);
+    // Theme buttons
+    document.querySelectorAll(".theme-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const themeKey = btn.dataset.theme;
+            applyTheme(themeKey);
         });
+    });
 
-        // Apply new
-        document.body.classList.add("theme-" + selectedTheme);
-
-        // Save to local storage
-        localStorage.setItem("av-theme", selectedTheme);
+    // Font buttons
+    document.querySelectorAll(".font-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const fontKey = btn.dataset.font;
+            applyFont(fontKey);
+        });
     });
 });

@@ -9,7 +9,7 @@ body {
     overflow-x: hidden;
 }
 
-/* NAV BAR */
+/* NAV */
 nav {
     position: fixed;
     top: 0;
@@ -24,9 +24,16 @@ nav {
     z-index: 1000;
 }
 
-nav img {
+/* LOGO WITH PURPLE-BLUE GLOW */
+nav .logo {
     height: 70%;
+    width: auto;
     margin-right: 1vw;
+    border-radius: .5vw;
+
+    /* Space glow */
+    filter: drop-shadow(0 0 1vw rgba(120, 50, 255, 0.8))
+            drop-shadow(0 0 2vw rgba(80, 100, 255, 0.5));
 }
 
 nav h1 {
@@ -51,18 +58,16 @@ nav h1 {
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 /* SETTINGS PANEL */
 .settings-panel {
     position: fixed;
     top: 0;
-    right: -24vw;        /* moved further to hide fully */
-    width: 22vw;         /* panel width */
-    max-width: 300px;    /* prevents padding from making it wider */
+    right: -24vw;
+    width: 22vw;
+    max-width: 300px;
     height: 100vh;
     background: #101010;
     padding: 2vw;
@@ -71,9 +76,7 @@ nav h1 {
     box-sizing: border-box;
 }
 
-.settings-panel.open {
-    right: 0;
-}
+.settings-panel.open { right: 0; }
 
 .settings-backdrop {
     position: fixed;
@@ -87,7 +90,6 @@ nav h1 {
     transition: 0.3s;
     z-index: 1500;
 }
-
 .settings-backdrop.open {
     opacity: 1;
     visibility: visible;
@@ -108,31 +110,28 @@ nav h1 {
 .color-preview {
     width: 100%;
     height: 3vw;
-    border-radius: 0.5vw;
+    border-radius: .5vw;
     border: 2px solid white;
 }
 
-/* FEATURED SECTION */
+/* FEATURED */
 .featured {
     padding-top: 7vw;
     padding-left: 2vw;
     display: flex;
     flex-wrap: wrap;
 }
-
 .featured h1 {
     width: 100%;
     font-size: 3.5vw;
     margin-bottom: 1vw;
 }
-
 .featured img {
     width: 12.5vw;
     height: 12.5vw;
     border-radius: 1vw;
     margin: 0.5vw;
 }
-
 .featured .row img {
     width: 26vw;
     height: 26vw;
@@ -144,23 +143,20 @@ nav h1 {
     margin-top: 2vw;
     display: flex;
 }
-
 .search input {
     background: #222;
     color: white;
     border: none;
-    padding: 0.8vw 1.5vw;
+    padding: .8vw 1.5vw;
     font-size: 1.5vw;
     border-radius: 1vw 0 0 1vw;
 }
-
 .search button {
     background: white;
     color: black;
-    padding: 0.8vw 1vw;
+    padding: .8vw 1vw;
     border: none;
     border-radius: 0 1vw 1vw 0;
-    cursor: pointer;
 }
 
 /* GAME GRID */
@@ -171,7 +167,6 @@ nav h1 {
     justify-content: center;
     padding-bottom: 5vw;
 }
-
 #games img {
     width: 15.6vw;
     height: 15.6vw;

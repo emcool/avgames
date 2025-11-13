@@ -2,16 +2,18 @@
 const input = document.querySelector(".search input");
 const games = document.querySelectorAll("#games img");
 
-input.addEventListener("input", () => {
-    const searchTerm = input.value.toLowerCase();
-    games.forEach(img => {
-        img.style.display = img.alt.toLowerCase().includes(searchTerm)
-            ? "block"
-            : "none";
+if (input) {
+    input.addEventListener("input", () => {
+        const searchTerm = input.value.toLowerCase();
+        games.forEach(img => {
+            img.style.display = img.alt.toLowerCase().includes(searchTerm)
+                ? "block"
+                : "none";
+        });
     });
-});
+}
 
-// SETTINGS PANEL
+// SETTINGS PANEL OPEN/CLOSE
 function openSettings() {
     document.getElementById("settingsPanel").classList.add("open");
     document.getElementById("settingsBackdrop").classList.add("open");
@@ -24,19 +26,73 @@ function closeSettings() {
     document.querySelector(".settings-btn").classList.remove("spin");
 }
 
-// BACKGROUND COLOR
-function changeColor(color, element) {
-    document.body.style.background = color;
-    localStorage.setItem("av-bg", color);
+// APPLY THEME
+function applyTheme(theme) {
+    const body = document.body;
+    const themes = ["space", "midnight", "neon", "grey"];
 
-    document.querySelectorAll(".color-option").forEach(opt => 
-        opt.classList.remove("selected")
-    );
-    element.classList.add("selected");
+    themes.forEach(t => body.classList.remove("theme-" + t));
+    body.classList.add("theme-" + theme);
+
+    localStorage.setItem("av-theme", theme);
+
+    document.querySelectorAll(".theme-option").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.theme === theme);
+    });
 }
 
-// RESTORE SAVED COLOR
+// APPLY FONT
+function applyFont(fontKey) {
+    const fonts = {
+        montserrat: "'Montserrat', sans-serif",
+        orbitron: "'Orbitron', sans-serif",
+        nunito: "'Nunito', sans-serif"
+    };
+
+    const selected = fonts[fontKey] || fonts.montserrat;
+    document.documentElement.style.setProperty("--font-family", selected);
+    localStorage.setItem("av-font", fontKey);
+
+    document.querySelectorAll(".font-option").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.font === fontKey);
+    });
+}
+
+// APPLY GLOW
+function applyGlow(level) {
+    let strength = 1;
+    if (level === "low") strength = 0.5;
+    if (level === "medium") strength = 1;
+    if (level === "high") strength = 1.6;
+
+    document.documentElement.style.setProperty("--glow-strength", strength);
+    localStorage.setItem("av-glow", level);
+
+    document.querySelectorAll(".glow-option").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.glow === level);
+    });
+}
+
+// INITIALIZE SETTINGS ON LOAD
 window.addEventListener("DOMContentLoaded", () => {
-    const saved = localStorage.getItem("av-bg");
-    if (saved) document.body.style.background = saved;
+    const savedTheme = localStorage.getItem("av-theme") || "midnight";
+    const savedFont = localStorage.getItem("av-font") || "montserrat";
+    const savedGlow = localStorage.getItem("av-glow") || "medium";
+
+    applyTheme(savedTheme);
+    applyFont(savedFont);
+    applyGlow(savedGlow);
+
+    // Hook up buttons
+    document.querySelectorAll(".theme-option").forEach(btn => {
+        btn.addEventListener("click", () => applyTheme(btn.dataset.theme));
+    });
+
+    document.querySelectorAll(".font-option").forEach(btn => {
+        btn.addEventListener("click", () => applyFont(btn.dataset.font));
+    });
+
+    document.querySelectorAll(".glow-option").forEach(btn => {
+        btn.addEventListener("click", () => applyGlow(btn.dataset.glow));
+    });
 });

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,74 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AV Games</title>
 
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+
+    <!-- NAV BAR -->
     <nav>
-    <img src="images/logo.png" alt="logo">
-    <h1>AV GAMES</h1>
+        <img src="images/logo.png" alt="logo">
+        <h1>AV GAMES</h1>
 
-    <!-- Settings button inside nav -->
-    <button class="settings-btn" onclick="openSettings()">
-        <i class="fas fa-cog"></i>
-    </button>
-</nav>
+        <!-- Settings button INSIDE nav -->
+        <button class="settings-btn" onclick="openSettings()">
+            <i class="fas fa-cog"></i>
+        </button>
+    </nav>
 
+    <!-- SETTINGS BACKDROP -->
+    <div class="settings-backdrop" id="settingsBackdrop" onclick="closeSettings()"></div>
 
+    <!-- SETTINGS PANEL -->
+    <div class="settings-panel" id="settingsPanel">
+
+        <div class="settings-header">
+            <h2>Settings</h2>
+            <button class="close-btn" onclick="closeSettings()">&times;</button>
+        </div>
+
+        <h3>Background Colors</h3>
+
+        <div class="color-grid">
+
+            <div class="color-option" onclick="changeColor('#000000', this)">
+                <div class="color-preview" style="background:#000000;"></div>
+                <span>Black</span>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#1a1a1a', this)">
+                <div class="color-preview" style="background:#1a1a1a;"></div>
+                <span>Charcoal</span>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#1e3a8a', this)">
+                <div class="color-preview" style="background:#1e3a8a;"></div>
+                <span>Blue</span>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#166534', this)">
+                <div class="color-preview" style="background:#166534;"></div>
+                <span>Green</span>
+            </div>
+
+            <div class="color-option" onclick="changeColor('#581c87', this)">
+                <div class="color-preview" style="background:#581c87;"></div>
+                <span>Purple</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FEATURED SECTION -->
     <div class="featured">
         <h1>Popular:</h1>
 
         <div class="column">
-            <a href="games/bob-the-robber-2/">
-                <img src="images/bob-the-robber-2.png" alt="bob the robber 2">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
-            <a href="games/vex7/">
-                <img src="images/vex7.jpeg" alt="vex 7">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
+          <a href="games/bob-the-robber-2/">
+            <img src="images/bob-the-robber-2.png">
+            <div class="play-button"><i class="fa-solid fa-play"></i></div>
+          </a>
+
+          <a href="games/vex7/">
+            <img src="images/vex7.jpeg">
+            <div class="play-button"><i class="fa-solid fa-play"></i></div>
+          </a>
         </div>
 
         <div class="row">
-            <a href="games/vex6/">
-                <img src="images/vex6.jpeg" alt="vex 6">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
+          <a href="games/vex6">
+            <img src="images/vex6.jpeg">
+            <div class="play-button"><i class="fa-solid fa-play"></i></div>
+          </a>
         </div>
 
         <div class="row">
-            <a href="games/drive-mad/">
-                <img src="images/drive-mad.jpg" alt="drive mad">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
+          <a href="games/drive-mad/">
+            <img src="images/drive-mad.jpg">
+            <div class="play-button"><i class="fa-solid fa-play"></i></div>
+          </a>
         </div>
 
         <div class="column">
-            <a href="games/moto-x3m/">
-                <img src="images/moto-x3m.jpg" alt="moto x3m">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
-            <a href="games/retro-bowl/">
-                <img src="images/retro-bowl.jpg" alt="retro bowl">
-                <div class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-            </a>
+          <a href="games/moto-x3m/">
+            <img src="images/moto-x3m.jpg">
+            <div class="play-button"><i class="fa-solid fa-play"></i></div>
+          </a>
+
+          <a href="games/retro-bowl/">
+            <img src="images/retro-bowl.jpg">
+            <div class="play-button"><i class="fa-solid fa-play"></i></div>
+          </a>
         </div>
     </div>
 
+    <!-- MAIN CONTENT -->
     <div class="content">
+
         <hr>
 
         <div class="search">
@@ -87,14 +126,16 @@
             <a href="games/vex6/"><img src="images/vex6.jpeg" alt="vex 6"></a>
             <a href="games/"><img src="images/mc.png" alt="minecraft"></a>
             <a href="games/moto-x3m/"><img src="images/moto-x3m.jpg" alt="moto x3m"></a>
-            <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg" alt="retro bowl"></a>
+            <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg" alt="retrobowl"></a>
             <a href="games/drive-mad/"><img src="images/drive-mad.jpg" alt="drive mad"></a>
             <a href="games/slope/"><img src="images/slope.jpg" alt="slope"></a>
             <a href="games/motox3m2/"><img src="images/motox3m2.jpg" alt="moto x3m2"></a>
         </div>
+
     </div>
 
+    <!-- JS -->
     <script src="script.js"></script>
+
 </body>
 </html>
-

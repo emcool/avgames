@@ -1,5 +1,4 @@
-/* YOUR ORIGINAL FULL CSS (unchanged) */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap'); 
 
 body {
     background-color: #1b1b1b;
@@ -28,7 +27,8 @@ nav img {
     margin-right: 1%;
     border-radius: 1vw;
     cursor: pointer;
-    box-shadow: 5px 5px 10px rgba(53,53,53,0.459);
+    user-select: none;
+    box-shadow: 5px 5px 10px rgba(53, 53, 53, 0.459);
 }
 
 nav h1 {
@@ -37,122 +37,148 @@ nav h1 {
     margin-right: 1%;
 }
 
-/* (… ALL YOUR ORIGINAL CSS EXACTLY AS YOU SENT IT …) */
-/* I DID NOT REMOVE OR MODIFY ANYTHING */
-
-/* ---------- NEW: Settings Panel ---------- */
-
-.settings-btn {
-    position: fixed;
-    bottom: 2vw;
-    right: 2vw;
-    background: #333;
-    color: white;
-    border: none;
-    width: 4vw;
-    height: 4vw;
-    border-radius: 50%;
-    font-size: 2vw;
-    cursor: pointer;
-    z-index: 9999;
+.content {
+    flex-direction: column;
+    align-items: left;
+    padding: 7vw;
+    padding-top: 0vw;
 }
 
-.settings-backdrop {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    opacity: 0; visibility: hidden;
-    transition: .3s;
-    z-index: 9000;
+.content hr {
+    border: 0;
+    height: 4px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(255, 255, 255), rgba(0, 0, 0, 0));
+    margin: 1vw 0;
 }
 
-.settings-backdrop.open {
-    opacity: 1; visibility: visible;
-}
-
-.settings-panel {
-    position: fixed;
-    right: -30vw;
-    top: 0;
-    width: 30vw;
-    height: 100%;
-    background: #1b1b1b;
-    padding: 2vw;
-    transition: .3s;
-    z-index: 9999;
-    color: white;
-}
-
-.settings-panel.open {
-    right: 0;
-}
-
-.settings-header {
+.search {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    user-select: none;
+    margin-top: 2.5vw;
+    margin-left: 1.2vw;
 }
-
-.close-btn {
-    background: none;
+ 
+.search input {
+    background-color: #222222;
     border: none;
-    color: white;
-    font-size: 2vw;
-    cursor: pointer;
+    border-radius: 1vw 0 0 1vw;
+    color: #fff;
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding: 0.8vw 1.5vw;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 1;
+    outline: none;
 }
-
-.color-grid {
+ 
+.search input::placeholder {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5vw;
+}
+ 
+.search button {
+    background-color: #fff;
+    border: none;
+    border-radius: 0 1vw 1vw 0;
+    color:#222222;
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding: 0.8vw 1vw;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 1;
+    transition: .3s all ease;
+}
+ 
+#games {
     display: flex;
     flex-wrap: wrap;
-    gap: 1vw;
-    margin-top: 2vw;
+    justify-content: center;
+    margin-top: .6vw;
+    padding-bottom: 5vw;
+}
+ 
+#games img {
+    height: 15.6vw;
+    width: 15.6vw;
+    border-radius: 1vw;
+    margin: .5vw;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .2s;
+}
+ 
+#games img:hover {
+    transform: scale(1.01);
 }
 
-.color-option {
+.featured {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1vw;
+    margin:1%;
+    margin-top: 6vw;
+}
+
+.featured h1 {
+    font-size: 3.5vw;
+    font-weight: 700;
+    margin: 1vw 1vw .4vw 1vw;
+    width: 83.8%;
+    text-align: left;
+    color: #fff;
+}
+
+.featured .column {
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+.featured img {
+    height: 12.5vw;
+    width: 12.5vw;
+    border-radius: 1vw;
+    margin: .5vw;
     cursor: pointer;
+    user-select: none;
+    transition: all .2s;
 }
 
-.color-preview {
-    width: 4vw;
-    height: 4vw;
-    border-radius: .8vw;
-    border: .2vw solid white;
+.featured img:hover {
+    transform: scale(1.02);
+    filter: brightness(50%);
 }
 
-.color-option.selected .color-preview {
-    border-color: yellow;
+.featured .row img {
+    height: 26vw;
+    width: 26vw;
 }
 
-/* ---------- Welcome Screen ---------- */
-
-#welcome-screen {
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:#1b1b1b;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    visibility:hidden;
-    transition:.5s;
-    z-index:10000;
+.featured a {
+    display: inline-block;
+    position: relative;
+    color: #2c7ffc;
+    text-decoration: none;
 }
-
-#welcome-screen.show {
-    opacity:1;
-    visibility:visible;
+    
+.featured .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
 }
-
-#welcome-screen.fade-out {
-    opacity:0;
-    visibility:hidden;
+    
+.featured a:hover .play-button {
+    opacity: 1;
+    pointer-events: none;
 }
-
-.welcome-content h1 span {
-    color:#2c7ffc;
+    
+.featured .play-button i {
+    font-size: 5vw;
+    text-shadow: 0 0 100px #2c7ffc;
 }

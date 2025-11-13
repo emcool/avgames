@@ -8,45 +8,64 @@ body {
     color: white;
 }
 
+/* ===== NAVIGATION BAR ===== */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     backdrop-filter: blur(10px) saturate(180%);
-    background-color: rgba(27,27,27,0.7);
+    background-color: rgba(27, 27, 27, 0.7);
     display: flex;
     align-items: center;
     padding: 8px 24px;
     z-index: 1000;
 }
+
 nav .logo {
     height: 40px;
     margin-right: 12px;
 }
+
 nav .site-title {
     font-size: 24px;
     margin: 0;
 }
 
+/* ===== FEATURED SECTION ===== */
 .featured {
     margin-top: 80px;
     padding: 16px;
 }
+
 .featured h1 {
     margin-bottom: 16px;
 }
-.featured .column, .featured .row {
+
+/* ===== GAMES GRID ===== */
+#games {
     display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    position: relative;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
-.featured img {
+
+#games a {
+    position: relative;
+    display: inline-block;
+}
+
+#games img {
     width: 150px;
     height: auto;
     border-radius: 8px;
+    transition: transform 0.2s ease;
 }
+
+#games img:hover {
+    transform: scale(1.05);
+}
+
 .play-button {
     position: absolute;
     top: 50%;
@@ -54,19 +73,28 @@ nav .site-title {
     transform: translate(-50%, -50%);
     font-size: 24px;
     color: white;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
+#games a:hover .play-button {
+    opacity: 1;
+}
+
+/* ===== SEARCH BAR ===== */
 .search {
     display: flex;
     justify-content: center;
     margin: 24px 0;
 }
+
 .search input {
     padding: 8px 12px;
     border-radius: 8px 0 0 8px;
     border: none;
     width: 200px;
 }
+
 .search button {
     padding: 8px 12px;
     border-radius: 0 8px 8px 0;
@@ -76,6 +104,7 @@ nav .site-title {
     cursor: pointer;
 }
 
+/* ===== SETTINGS BUTTON ===== */
 .settings-btn {
     position: fixed;
     bottom: 20px;
@@ -90,20 +119,26 @@ nav .site-title {
     font-size: 24px;
     cursor: pointer;
 }
+
+/* ===== SETTINGS PANEL ===== */
 .settings-backdrop {
     position: fixed;
-    top:0; left:0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 1500;
 }
+
 .settings-backdrop.open {
     opacity: 1;
     visibility: visible;
 }
+
 .settings-panel {
     position: fixed;
     right: -350px;
@@ -116,27 +151,9 @@ nav .site-title {
     z-index: 2000;
     overflow-y: auto;
 }
+
 .settings-panel.open {
     right: 0;
-}
-
-.settings-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-}
-.settings-header h2 {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-.settings-header button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
 }
 
 .color-grid {
@@ -144,27 +161,33 @@ nav .site-title {
     flex-wrap: wrap;
     gap: 12px;
 }
+
 .color-option {
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
+
 .color-preview {
     width: 40px;
     height: 40px;
     border-radius: 4px;
     border: 2px solid white;
 }
+
 .color-option.selected .color-preview {
     border: 2px solid yellow;
 }
 
+/* ===== WELCOME SCREEN ===== */
 #welcome-screen {
     position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background-color:#1b1b1b;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: #1b1b1b;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,14 +196,17 @@ nav .site-title {
     transition: all 0.5s ease;
     z-index: 3000;
 }
+
 #welcome-screen.show {
     opacity: 1;
     visibility: visible;
 }
+
 #welcome-screen.fade-out {
     opacity: 0;
     visibility: hidden;
 }
+
 .welcome-content h1 span {
     color: #1e40af;
 }

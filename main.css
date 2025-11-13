@@ -35,7 +35,6 @@ nav h1 {
     flex-grow: 1;
 }
 
-
 /* SETTINGS BUTTON */
 .settings-btn {
     background: none;
@@ -57,18 +56,19 @@ nav h1 {
     }
 }
 
-
 /* SETTINGS PANEL */
 .settings-panel {
     position: fixed;
     top: 0;
-    right: -22vw;
-    width: 22vw;
+    right: -24vw;        /* moved further to hide fully */
+    width: 22vw;         /* panel width */
+    max-width: 300px;    /* prevents padding from making it wider */
     height: 100vh;
     background: #101010;
     padding: 2vw;
     transition: right 0.35s ease;
     z-index: 2000;
+    box-sizing: border-box;
 }
 
 .settings-panel.open {
@@ -93,6 +93,7 @@ nav h1 {
     visibility: visible;
 }
 
+/* COLOR OPTIONS */
 .color-grid {
     display: flex;
     flex-wrap: wrap;
@@ -137,7 +138,7 @@ nav h1 {
     height: 26vw;
 }
 
-/* SEARCH + GAMES */
+/* SEARCH */
 .search {
     margin-left: 2vw;
     margin-top: 2vw;
@@ -162,6 +163,7 @@ nav h1 {
     cursor: pointer;
 }
 
+/* GAME GRID */
 #games {
     margin-top: 1vw;
     display: flex;

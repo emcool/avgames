@@ -182,3 +182,90 @@ nav h1 {
     font-size: 5vw;
     text-shadow: 0 0 100px #2c7ffc;
 }
+
+/* Settings button inside nav */
+nav .settings-btn {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3vw;
+    cursor: pointer;
+}
+
+nav .settings-btn:hover {
+    color: #2c7ffc;
+}
+
+/* Settings panel */
+.settings-backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 99;
+}
+
+.settings-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.settings-panel {
+    position: fixed;
+    right: -30vw;
+    top: 0;
+    width: 30vw;
+    height: 100%;
+    background: #1b1b1b;
+    padding: 2vw;
+    transition: .3s;
+    z-index: 100;
+    color: white;
+}
+
+.settings-panel.open {
+    right: 0;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+.color-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1vw;
+    margin-top: 2vw;
+}
+
+.color-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.color-preview {
+    width: 4vw;
+    height: 4vw;
+    border-radius: .8vw;
+    border: .2vw solid white;
+}
+
+.color-option.selected .color-preview {
+    border-color: yellow;
+}

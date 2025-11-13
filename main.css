@@ -1,61 +1,278 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800&family=Orbitron:wght@400;600;700&display=swap');
+/* ----------------------------------------------------
+   FONT + BASE
+---------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
 
-:root {
-    --font-family: 'Montserrat', sans-serif;
-    --glow-strength: 1;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* ===================== */
-/* STAR LAYERS (DIM, PURPLE/BLUE) */
-/* ===================== */
+body {
+    background-color: #1b1b1b;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+}
 
-#stars, #stars2 {
+/* ----------------------------------------------------
+   NAVBAR
+---------------------------------------------------- */
+nav {
     position: fixed;
     top: 0;
     left: 0;
+    backdrop-filter: blur(12px) saturate(200%) brightness(70%);
+    color: #fff;
+    display: flex;
+    height: 7vw;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    display: none;
+    align-items: center;
+    padding: 0 1%;
+    z-index: 100;
 }
 
-/* distant stars */
+nav img {
+    height: 80%;
+    width: auto;
+    margin-right: 1%;
+    border-radius: 1vw;
+    box-shadow: 0 0 15px rgba(100, 80, 255, 0.4);
+}
+
+nav h1 {
+    font-size: 4vw;
+    font-weight: 800;
+}
+
+/* ----------------------------------------------------
+   SEARCH + GAME GRID
+---------------------------------------------------- */
+.content {
+    padding: 7vw;
+    padding-top: 0vw;
+}
+
+.content hr {
+    border: 0;
+    height: 4px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #fff, rgba(0, 0, 0, 0));
+    margin: 1vw 0;
+}
+
+.search {
+    display: flex;
+    margin-top: 2.5vw;
+    margin-left: 1.2vw;
+}
+
+.search input {
+    background-color: #222;
+    border: none;
+    border-radius: 1vw 0 0 1vw;
+    color: #fff;
+    font-size: 1.5vw;
+    font-weight: 600;
+    padding: 0.8vw 1.5vw;
+    outline: none;
+}
+
+.search button {
+    background-color: #fff;
+    border: none;
+    border-radius: 0 1vw 1vw 0;
+    color: #222;
+    font-size: 1.5vw;
+    padding: 0.8vw 1vw;
+    cursor: pointer;
+}
+
+#games {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: .6vw;
+    padding-bottom: 5vw;
+}
+
+#games img {
+    height: 15.6vw;
+    width: 15.6vw;
+    border-radius: 1vw;
+    margin: .5vw;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+#games img:hover {
+    transform: scale(1.01);
+}
+
+/* ----------------------------------------------------
+   FEATURED
+---------------------------------------------------- */
+.featured {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1vw;
+    margin-top: 6vw;
+}
+
+.featured h1 {
+    font-size: 3.5vw;
+    font-weight: 700;
+    margin: 1vw 1vw .4vw 1vw;
+    width: 83.8%;
+    text-align: left;
+}
+
+.featured img {
+    height: 12.5vw;
+    width: 12.5vw;
+    border-radius: 1vw;
+    margin: .5vw;
+    transition: all .2s;
+}
+
+.featured img:hover {
+    transform: scale(1.02);
+    filter: brightness(50%);
+}
+
+.featured .row img {
+    height: 26vw;
+    width: 26vw;
+}
+
+.featured a {
+    position: relative;
+    display: inline-block;
+}
+
+.featured .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.featured a:hover .play-button {
+    opacity: 1;
+}
+
+.featured .play-button i {
+    font-size: 5vw;
+    text-shadow: 0 0 50px #2c7ffc;
+}
+
+/* ----------------------------------------------------
+   SETTINGS BUTTON
+---------------------------------------------------- */
+.settings-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 500;
+    background: #222;
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(120, 80, 255, 0.5);
+    transition: transform .3s;
+}
+
+.settings-btn:hover {
+    transform: rotate(45deg) scale(1.1);
+}
+
+/* ----------------------------------------------------
+   SETTINGS PANEL
+---------------------------------------------------- */
+.settings-backdrop {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:400;
+}
+
+.settings-backdrop.open {
+    visibility:visible;
+    opacity:1;
+}
+
+.settings-panel {
+    position: fixed;
+    top:0;
+    right:-350px;
+    width:350px;
+    height:100%;
+    background:#1a1a1a;
+    padding:25px;
+    transition:.3s;
+    z-index:450;
+    overflow-y: auto;
+}
+
+.settings-panel.open { right:0; }
+
+.pill {
+    padding:10px 18px;
+    margin:6px;
+    border-radius:20px;
+    background:#333;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+    border:none;
+}
+
+.pill:hover {
+    background:#444;
+}
+
+/* ----------------------------------------------------
+   STAR LAYERS (Dim, purple-blue)
+---------------------------------------------------- */
+#stars, #stars2 {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    pointer-events:none;
+    z-index:0;
+    display:none;
+}
+
 #stars {
-    background: transparent url("data:image/svg+xml,\
-    <svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'>\
-    <circle cx='1' cy='1' r='1' fill='rgba(150,120,255,0.3)'/>\
-    </svg>") repeat;
-    opacity: 0.05;
-    animation: twinkle 7s infinite alternate ease-in-out, drift1 90s linear infinite;
+    background: transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'><circle cx='1' cy='1' r='1' fill='rgba(150,120,255,0.3)'/></svg>") repeat;
+    opacity:0.06;
+    animation: twinkle 7s infinite alternate ease-in-out;
 }
 
-/* closer stars */
 #stars2 {
-    background: transparent url("data:image/svg+xml,\
-    <svg xmlns='http://www.w3.org/2000/svg' width='2' height='2'>\
-    <circle cx='1' cy='1' r='1' fill='rgba(120,160,255,0.25)'/>\
-    </svg>") repeat;
-    opacity: 0.04;
-    animation: twinkle 10s infinite alternate ease-in-out, drift2 140s linear infinite;
+    background: transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2'><circle cx='1' cy='1' r='1' fill='rgba(120,160,255,0.25)'/></svg>") repeat;
+    opacity:0.04;
+    animation: twinkle 10s infinite alternate ease-in-out;
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.02; }
-    100% { opacity: 0.06; }
+    0% {opacity:0.02;}
+    100% {opacity:0.06;}
 }
 
-@keyframes drift1 {
-    0% { background-position: 0 0; }
-    100% { background-position: 200px 300px; }
-}
-
-@keyframes drift2 {
-    0% { background-position: 0 0; }
-    100% { background-position: -250px -200px; }
-}
-
-/* Stars visible on space-ish themes */
+/* Reveal stars in cosmic themes */
 body.theme-midnightplus #stars,
 body.theme-midnightplus #stars2,
 body.theme-cosmicdrift #stars,
@@ -64,375 +281,107 @@ body.theme-galaxyparallax #stars,
 body.theme-galaxyparallax #stars2,
 body.theme-warpcore #stars,
 body.theme-warpcore #stars2,
-body.theme-neonpulse #stars,
-body.theme-neonpulse #stars2 {
-    display: block;
+body.theme-eventhorizon #stars,
+body.theme-eventhorizon #stars2 {
+    display:block;
 }
 
-/* ===================== */
-/* THEMES */
-/* ===================== */
-
-/* Midnight+ — very dark, soft glow center */
-body.theme-midnightplus {
-    background: radial-gradient(circle at center, #05050b, #000002 75%);
-}
-
-/* Cosmic Drift — soft lofi nebula drifting */
-body.theme-cosmicdrift {
-    background:
-        radial-gradient(circle at 20% 20%, rgba(70, 40, 120, 0.75), transparent 70%),
-        radial-gradient(circle at 80% 80%, rgba(20, 60, 120, 0.7), transparent 75%),
-        #050510;
-    background-size: 140% 140%;
-    animation: cosmicDrift 50s ease-in-out infinite;
-}
-
-@keyframes cosmicDrift {
-    0%   { background-position: 0% 0%; }
-    50%  { background-position: 50% 60%; }
-    100% { background-position: 0% 0%; }
-}
-
-/* Galaxy Parallax — darker with subtle breathing light */
-body.theme-galaxyparallax {
-    background:
-        radial-gradient(circle at 30% 10%, rgba(120, 80, 200, 0.35), transparent 70%),
-        radial-gradient(circle at 70% 90%, rgba(40, 140, 255, 0.3), transparent 70%),
-        #02020a;
-    animation: galaxyPulse 25s ease-in-out infinite;
-}
-
-@keyframes galaxyPulse {
-    0%   { filter: brightness(0.95); }
-    50%  { filter: brightness(1.05); }
-    100% { filter: brightness(0.95); }
-}
-
-/* Warp Core — animated swirling energy */
-body.theme-warpcore {
-    background:
-        radial-gradient(circle at center, #111827, #020617 70%);
-    position: relative;
-    overflow: hidden;
-}
-
-body.theme-warpcore::before {
-    content: "";
+/* ----------------------------------------------------
+   SHOOTING STAR
+---------------------------------------------------- */
+#shooting-star {
+    width: 3px;
+    height: 3px;
+    background: white;
     position: fixed;
-    inset: -50%;
+    top: -10px;
+    left: -10px;
+    opacity: 0;
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px white);
+}
+
+/* Shooting star animation */
+@keyframes shootingStar {
+    0% { opacity: 1; transform: translate(-50px, -50px) rotate(45deg); }
+    100% { opacity: 0; transform: translate(400px, 400px) rotate(45deg); }
+}
+
+/* ----------------------------------------------------
+   THEMES
+---------------------------------------------------- */
+
+/* MIDNIGHT+ */
+body.theme-midnightplus {
+    background: radial-gradient(circle at center, #04040a, #000003 80%);
+}
+
+/* COSMIC DRIFT */
+body.theme-cosmicdrift {
+    background: linear-gradient(160deg, #090016 0%, #150022 50%, #000010 100%);
+}
+
+/* GALAXY PARALLAX */
+body.theme-galaxyparallax {
+    background: radial-gradient(circle at 60% 40%, #1a0030, #050014 80%);
+}
+
+/* WARP CORE */
+body.theme-warpcore {
+    background: conic-gradient(from 45deg, #16002d, #3d0099, #16002d);
+    animation: warpRotate 25s linear infinite;
+}
+
+@keyframes warpRotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+/* NEON PULSE */
+body.theme-neonpulse {
+    background: linear-gradient(135deg, #13001a, #2a0066, #13001a);
+}
+
+/* GREY MINIMAL */
+body.theme-greyminimal {
+    background: #1b1b1b;
+}
+
+/* ----------------------------------------------------
+   EVENT HORIZON (Blackhole + nebula)
+---------------------------------------------------- */
+body.theme-eventhorizon {
+    background: radial-gradient(circle at center, #020208, #000003 80%);
+    position: relative;
+}
+
+body.theme-eventhorizon::before {
+    content:"";
+    position:fixed;
+    inset:-50%;
     background: conic-gradient(
         from 0deg,
-        rgba(126, 34, 206, 0.2),
-        rgba(59, 130, 246, 0.5),
-        rgba(14, 165, 233, 0.3),
-        rgba(126, 34, 206, 0.2)
+        rgba(0,0,0,0) 0deg,
+        rgba(20,10,40,0.4) 60deg,
+        rgba(100,20,200,0.4) 120deg,
+        rgba(30,10,80,0.35) 180deg,
+        rgba(10,5,30,0.4) 240deg,
+        rgba(80,20,160,0.4) 300deg,
+        rgba(0,0,0,0) 360deg
     );
-    mix-blend-mode: screen;
-    opacity: 0.35;
-    animation: warpSpin 40s linear infinite;
-    pointer-events: none;
-    z-index: 0;
+    animation:blackholeSpin 40s linear infinite;
+    opacity:0.35;
+    mix-blend-mode:screen;
 }
 
-@keyframes warpSpin {
-    0%   { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(360deg) scale(1.1); }
+@keyframes blackholeSpin {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
 }
 
-/* Neon Pulse — bright purple/blue glow */
-body.theme-neonpulse {
-    background:
-        radial-gradient(circle at 25% 20%, rgba(168, 85, 247, 0.85), transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.8), transparent 65%),
-        #020015;
-}
+body.theme-eventhorizon::after {
+    content:"";
+    posi
 
-/* Grey Minimal — clean fallback theme */
-body.theme-greyminimal {
-    background: #111827;
-}
-
-/* Fallback body style (just in case) */
-body {
-    background-color: #1b1b1b;
-    font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
-    color: white;
-    overflow-x: hidden;
-}
-
-/* ===================== */
-/* NAVBAR */
-/* ===================== */
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 5vw;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 1.5vw;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
-
-nav .logo {
-    height: 70%;
-    width: auto;
-    margin-right: 1vw;
-    border-radius: .5vw;
-    filter: drop-shadow(0 0 calc(1vw * var(--glow-strength)) rgba(120, 50, 255, 0.8))
-            drop-shadow(0 0 calc(2vw * var(--glow-strength)) rgba(80, 100, 255, 0.5));
-}
-
-nav h1 {
-    font-size: 4vw;
-    font-weight: 800;
-    flex-grow: 1;
-}
-
-.settings-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2.2vw;
-    margin-right: 2vw;
-    cursor: pointer;
-    transition: transform 0.3s ease, text-shadow 0.3s ease;
-}
-
-.settings-btn.spin i {
-    animation: spin 1.2s linear infinite;
-}
-
-.settings-btn:hover i {
-    text-shadow: 0 0 1vw rgba(120, 50, 255, 0.7);
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* ===================== */
-/* SETTINGS PANEL */
-/* ===================== */
-
-.settings-panel {
-    position: fixed;
-    top: 0;
-    right: -24vw;
-    width: 22vw;
-    max-width: 300px;
-    height: 100vh;
-    background: #101010;
-    padding: 2vw;
-    transition: right 0.35s ease;
-    z-index: 2000;
-    box-sizing: border-box;
-}
-
-.settings-panel.open {
-    right: 0;
-}
-
-.settings-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: .3s;
-    z-index: 1500;
-}
-
-.settings-backdrop.open {
-    opacity: 1;
-    visibility: visible;
-}
-
-.settings-panel h2 {
-    margin-top: 0;
-    margin-bottom: 1.5vw;
-    font-size: 1.6vw;
-}
-
-.settings-section {
-    margin-bottom: 2vw;
-}
-
-.settings-section h3 {
-    font-size: 1.2vw;
-    margin-bottom: 0.5vw;
-}
-
-.option-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5vw;
-    margin-bottom: 0.5vw;
-}
-
-.pill {
-    background: #181818;
-    color: white;
-    border-radius: 999px;
-    border: 1px solid #2f2f2f;
-    padding: 0.4vw 0.9vw;
-    font-size: 0.9vw;
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pill:hover {
-    border-color: rgba(120, 50, 255, 0.8);
-    box-shadow: 0 0 .8vw rgba(120, 50, 255, 0.5);
-}
-
-.pill.active {
-    background: linear-gradient(135deg, #4c1d95, #1d4ed8);
-    border-color: transparent;
-    box-shadow: 0 0 1.2vw rgba(120, 50, 255, 0.9);
-}
-
-/* ===================== */
-/* FEATURED SECTION */
-/* ===================== */
-
-.featured {
-    padding-top: 7vw;
-    padding-left: 2vw;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
-}
-
-.featured h1 {
-    width: 100%;
-    font-size: 3.5vw;
-    margin-bottom: 1vw;
-}
-
-.featured .column {
-    display: flex;
-    flex-direction: column;
-}
-
-.featured .row {
-    display: flex;
-    flex-direction: row;
-}
-
-.featured img {
-    width: 12.5vw;
-    height: 12.5vw;
-    border-radius: 1vw;
-    margin: 0.5vw;
-    cursor: pointer;
-    transition: transform .2s, filter .2s, box-shadow .2s;
-}
-
-.featured img:hover {
-    transform: scale(1.02);
-    filter: brightness(1.05);
-    box-shadow: 0 0 1.5vw rgba(120, 50, 255, 0.4);
-}
-
-.featured .row img {
-    width: 26vw;
-    height: 26vw;
-}
-
-.featured a {
-    position: relative;
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: .2s ease;
-    color: white;
-}
-
-.featured a:hover .play-button {
-    opacity: 1;
-}
-
-/* ===================== */
-/* SEARCH & GAMES */
-/* ===================== */
-
-.content {
-    padding-bottom: 4vw;
-    position: relative;
-    z-index: 1;
-}
-
-.content hr {
-    border: 0;
-    height: 4px;
-    background-image: linear-gradient(to right, rgba(0,0,0,0), white, rgba(0,0,0,0));
-    margin: 1vw 2vw;
-}
-
-.search {
-    margin-left: 2vw;
-    margin-top: 2vw;
-    display: flex;
-}
-
-.search input {
-    background: #222;
-    color: white;
-    border: none;
-    padding: .8vw 1.5vw;
-    font-size: 1.5vw;
-    border-radius: 1vw 0 0 1vw;
-    outline: none;
-}
-
-.search input:focus {
-    box-shadow: 0 0 1vw rgba(120, 50, 255, 0.6);
-}
-
-.search button {
-    background: white;
-    color: black;
-    padding: .8vw 1vw;
-    border: none;
-    border-radius: 0 1vw 1vw 0;
-    cursor: pointer;
-}
-
-#games {
-    margin-top: 1vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-bottom: 5vw;
-}
-
-#games img {
-    width: 15.6vw;
-    height: 15.6vw;
-    margin: 0.5vw;
-    border-radius: 1vw;
-    cursor: pointer;
-    transition: transform .2s, box-shadow .2s;
-}
-
-#games img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 1.2vw rgba(120, 50, 255, 0.5);
-}

@@ -1,30 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AV Games</title>
-  <link rel="icon" type="image/png" href="images/av-games-favicon.png">
-  <link rel="stylesheet" href="main.css">
-  <script src="https://kit.fontawesome.com/a2d9d5a4a0.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/png" href="images/av-games-favicon.png" />
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Welcome Screen -->
+  <div id="welcome-screen">
+    <div class="welcome-content">
+      <h1>Welcome to <span>AV Games</span></h1>
+      <p>Enjoy :)</p>
+    </div>
+  </div>
+
+  <!-- Settings Button -->
+  <button class="settings-btn" onclick="openSettings()">
+    <i class="fas fa-cog"></i>
+  </button>
+
+  <!-- Settings Backdrop -->
+  <div class="settings-backdrop" id="settingsBackdrop" onclick="closeSettings()"></div>
+
+  <!-- Settings Panel -->
+  <div class="settings-panel" id="settingsPanel">
+    <div class="settings-header">
+      <h2><i class="fas fa-cog"></i> Settings</h2>
+      <button onclick="closeSettings()" class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+
+    <h3>Background Color</h3>
+    <div class="color-grid">
+      <div class="color-option" onclick="changeColor('#000000', this)">
+        <div class="color-preview" style="background-color:#000000;"></div>
+        <div class="color-name">Black</div>
+      </div>
+      <div class="color-option" onclick="changeColor('#1b1b1b', this)">
+        <div class="color-preview" style="background-color:#1b1b1b;"></div>
+        <div class="color-name">Dark Gray</div>
+      </div>
+      <div class="color-option" onclick="changeColor('#1e3a8a', this)">
+        <div class="color-preview" style="background-color:#1e3a8a;"></div>
+        <div class="color-name">Blue</div>
+      </div>
+      <div class="color-option" onclick="changeColor('#166534', this)">
+        <div class="color-preview" style="background-color:#166534;"></div>
+        <div class="color-name">Green</div>
+      </div>
+      <div class="color-option" onclick="changeColor('#581c87', this)">
+        <div class="color-preview" style="background-color:#581c87;"></div>
+        <div class="color-name">Purple</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
   <nav>
-    <img src="images/av-games-logo.png" alt="Logo" class="logo">
+    <img src="images/av-games-logo.png" alt="AV Games Logo" class="logo" />
     <h1 class="site-title">AV Games</h1>
   </nav>
 
   <!-- Featured Section -->
   <section class="featured">
     <h1>Popular:</h1>
-    <div id="games" class="games-grid">
-      <a href="games/bob-the-robber-2/"><img src="images/bob-the-robber-2.png" alt="Bob the Robber 2"></a>
-      <a href="games/vex6/"><img src="images/vex6.jpeg" alt="Vex 6"></a>
-      <a href="games/drive-mad/"><img src="images/drive-mad.jpg" alt="Drive Mad"></a>
-      <a href="games/moto-x3m/"><img src="images/moto-x3m.jpg" alt="Moto X3M"></a>
-      <a href="games/retro-bowl/"><img src="images/retro-bowl.jpg" alt="Retro Bowl"></a>
+    <div class="games-grid">
+      <a href="games/bob-the-robber-2/">
+        <img src="images/bob-the-robber-2.png" alt="Bob the Robber 2">
+        <div class="play-button"><i class="fa-solid fa-play"></i></div>
+      </a>
+      <a href="games/vex7/">
+        <img src="images/vex7.jpeg" alt="Vex 7">
+        <div class="play-button"><i class="fa-solid fa-play"></i></div>
+      </a>
+      <a href="games/vex6/">
+        <img src="images/vex6.jpeg" alt="Vex 6">
+        <div class="play-button"><i class="fa-solid fa-play"></i></div>
+      </a>
+      <a href="games/drive-mad/">
+        <img src="images/drive-mad.jpg" alt="Drive Mad">
+        <div class="play-button"><i class="fa-solid fa-play"></i></div>
+      </a>
+      <a href="games/moto-x3m/">
+        <img src="images/moto-x3m.jpg" alt="Moto X3M">
+        <div class="play-button"><i class="fa-solid fa-play"></i></div>
+      </a>
+      <a href="games/retro-bowl/">
+        <img src="images/retro-bowl.jpg" alt="Retro Bowl">
+        <div class="play-button"><i class="fa-solid fa-play"></i></div>
+      </a>
     </div>
   </section>
 
@@ -34,35 +101,11 @@
     <button><i class="fas fa-search"></i></button>
   </div>
 
-  <!-- Settings Button -->
-  <button class="settings-btn" onclick="openSettings()"><i class="fas fa-cog"></i></button>
-
-  <!-- Settings Backdrop -->
-  <div id="settingsBackdrop" class="settings-backdrop" onclick="closeSettings()"></div>
-
-  <!-- Settings Panel -->
-  <div id="settingsPanel" class="settings-panel">
-    <h2>Settings</h2>
-    <h3>Background Style</h3>
-    <div class="color-grid">
-      <div class="color-option" onclick="setBackground('pattern', this)">
-        <div class="color-preview" style="background-image:url('images/pattern-bg.png'); background-size:cover;"></div>
-        <span>Pattern</span>
-      </div>
-      <div class="color-option" onclick="setBackground('#1b1b1b', this)">
-        <div class="color-preview" style="background-color:#1b1b1b;"></div>
-        <span>Black</span>
-      </div>
-      <div class="color-option" onclick="setBackground('#111827', this)">
-        <div class="color-preview" style="background-color:#111827;"></div>
-        <span>Dark</span>
-      </div>
-      <div class="color-option" onclick="setBackground('#1e40af', this)">
-        <div class="color-preview" style="background-color:#1e40af;"></div>
-        <span>Blue</span>
-      </div>
-    </div>
-  </div>
+  <!-- Game Gallery -->
+  <main id="games">
+    <a href="games/slope/"><img src="images/slope.jpg" alt="Slope"></a>
+    <a href="games/motox3m2/"><img src="images/motox3m2.jpg" alt="Moto X3M 2"></a>
+  </main>
 
   <script src="script.js"></script>
 </body>

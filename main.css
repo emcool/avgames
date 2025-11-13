@@ -38,7 +38,7 @@ nav img {
     width: auto;
     margin-right: 1%;
     border-radius: 1vw;
-    box-shadow: 0 0 15px rgba(100, 80, 255, 0.4);
+    box-shadow: 0 0 15px rgba(120, 60, 255, 0.4);
 }
 
 nav h1 {
@@ -57,7 +57,12 @@ nav h1 {
 .content hr {
     border: 0;
     height: 4px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #fff, rgba(0, 0, 0, 0));
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0),
+        #fff,
+        rgba(0, 0, 0, 0)
+    );
     margin: 1vw 0;
 }
 
@@ -73,7 +78,6 @@ nav h1 {
     border-radius: 1vw 0 0 1vw;
     color: #fff;
     font-size: 1.5vw;
-    font-weight: 600;
     padding: 0.8vw 1.5vw;
     outline: none;
 }
@@ -186,7 +190,7 @@ nav h1 {
     font-size: 24px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(120, 80, 255, 0.5);
+    box-shadow: 0 0 15px rgba(120,80,255,0.5);
     transition: transform .3s;
 }
 
@@ -244,7 +248,7 @@ nav h1 {
 }
 
 /* ----------------------------------------------------
-   STAR LAYERS (Dim, purple-blue)
+   STARS
 ---------------------------------------------------- */
 #stars, #stars2 {
     position: fixed;
@@ -258,13 +262,13 @@ nav h1 {
 #stars {
     background: transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'><circle cx='1' cy='1' r='1' fill='rgba(150,120,255,0.3)'/></svg>") repeat;
     opacity:0.06;
-    animation: twinkle 7s infinite alternate ease-in-out;
+    animation: twinkle 7s infinite alternate;
 }
 
 #stars2 {
     background: transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2'><circle cx='1' cy='1' r='1' fill='rgba(120,160,255,0.25)'/></svg>") repeat;
     opacity:0.04;
-    animation: twinkle 10s infinite alternate ease-in-out;
+    animation: twinkle 10s infinite alternate;
 }
 
 @keyframes twinkle {
@@ -272,18 +276,9 @@ nav h1 {
     100% {opacity:0.06;}
 }
 
-/* Reveal stars in cosmic themes */
-body.theme-midnightplus #stars,
-body.theme-midnightplus #stars2,
-body.theme-cosmicdrift #stars,
-body.theme-cosmicdrift #stars2,
-body.theme-galaxyparallax #stars,
-body.theme-galaxyparallax #stars2,
-body.theme-warpcore #stars,
-body.theme-warpcore #stars2,
-body.theme-eventhorizon #stars,
-body.theme-eventhorizon #stars2 {
-    display:block;
+body[class*="theme"] #stars,
+body[class*="theme"] #stars2 {
+    display: block;
 }
 
 /* ----------------------------------------------------
@@ -298,59 +293,53 @@ body.theme-eventhorizon #stars2 {
     left: -10px;
     opacity: 0;
     border-radius: 50%;
-    z-index: 3;
+    z-index: 9999;
     pointer-events: none;
     filter: drop-shadow(0 0 6px white);
 }
 
-/* Shooting star animation */
 @keyframes shootingStar {
-    0% { opacity: 1; transform: translate(-50px, -50px) rotate(45deg); }
-    100% { opacity: 0; transform: translate(400px, 400px) rotate(45deg); }
+    0% {
+        opacity: 1;
+        transform: translate(-50px, -50px) rotate(45deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(400px, 400px) rotate(45deg);
+    }
 }
 
 /* ----------------------------------------------------
    THEMES
 ---------------------------------------------------- */
 
-/* MIDNIGHT+ */
+/* Midnight+ */
 body.theme-midnightplus {
     background: radial-gradient(circle at center, #04040a, #000003 80%);
 }
 
-/* COSMIC DRIFT */
+/* Cosmic Drift */
 body.theme-cosmicdrift {
-    background: linear-gradient(160deg, #090016 0%, #150022 50%, #000010 100%);
+    background: linear-gradient(160deg, #090016, #150022, #000010);
 }
 
-/* GALAXY PARALLAX */
+/* Galaxy Parallax */
 body.theme-galaxyparallax {
     background: radial-gradient(circle at 60% 40%, #1a0030, #050014 80%);
 }
 
-/* WARP CORE */
-body.theme-warpcore {
-    background: conic-gradient(from 45deg, #16002d, #3d0099, #16002d);
-    animation: warpRotate 25s linear infinite;
-}
-
-@keyframes warpRotate {
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
-}
-
-/* NEON PULSE */
+/* Neon Pulse */
 body.theme-neonpulse {
-    background: linear-gradient(135deg, #13001a, #2a0066, #13001a);
+    background: linear-gradient(135deg, #14001d, #35007d, #14001d);
 }
 
-/* GREY MINIMAL */
+/* Grey Minimal */
 body.theme-greyminimal {
     background: #1b1b1b;
 }
 
 /* ----------------------------------------------------
-   EVENT HORIZON (Blackhole + nebula)
+   EVENT HORIZON — BLACKHOLE
 ---------------------------------------------------- */
 body.theme-eventhorizon {
     background: radial-gradient(circle at center, #020208, #000003 80%);
@@ -383,5 +372,77 @@ body.theme-eventhorizon::before {
 
 body.theme-eventhorizon::after {
     content:"";
-    posi
+    position:fixed;
+    inset:-20%;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(130,30,255,0.25), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(40,120,255,0.25), transparent 60%);
+    background-size:150% 150%;
+    animation: nebulaDrift 50s ease-in-out infinite alternate;
+    mix-blend-mode: screen;
+    pointer-events:none;
+}
 
+@keyframes nebulaDrift {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 50% 80%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* ----------------------------------------------------
+   AURORA PULSE (NEW)
+---------------------------------------------------- */
+body.theme-aurorapulse {
+    background: #02040a;
+    overflow: hidden;
+}
+
+/* Main aurora layer */
+body.theme-aurorapulse::before {
+    content: "";
+    position: fixed;
+    inset: -30%;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 180, 0.28), transparent 60%),
+        radial-gradient(circle at 70% 50%, rgba(150, 80, 255, 0.26), transparent 60%),
+        radial-gradient(circle at 40% 80%, rgba(40, 140, 255, 0.22), transparent 70%);
+    filter: blur(75px);
+    animation: auroraHorizontal 30s ease-in-out infinite alternate,
+               auroraVertical 55s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Secondary shimmer */
+body.theme-aurorapulse::after {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    background:
+        linear-gradient(120deg, rgba(0,255,160,0.18), transparent 70%),
+        linear-gradient(300deg, rgba(180,70,255,0.18), transparent 70%);
+    filter: blur(55px);
+    mix-blend-mode: screen;
+    animation: auroraShimmer 14s ease-in-out infinite;
+}
+
+/* Horizontal motion */
+@keyframes auroraHorizontal {
+    0% { transform: translateX(-10%) scale(1); }
+    50% { transform: translateX(15%) scale(1.1); }
+    100% { transform: translateX(-5%) scale(1); }
+}
+
+/* Vertical motion */
+@keyframes auroraVertical {
+    0% { transform: translateY(0%) scale(1); }
+    50% { transform: translateY(-10%) scale(1.15); }
+    100% { transform: translateY(0%) scale(1); }
+}
+
+/* Shimmer */
+@keyframes auroraShimmer {
+    0% { opacity: 0.25; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(1.05); }
+    100% { opacity: 0.25; transform: scale(1); }
+}

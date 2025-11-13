@@ -16,33 +16,43 @@
 
 <body>
 
-    <!-- SETTINGS PANEL -->
+    <!-- SETTINGS BACKDROP -->
     <div class="settings-backdrop" id="settingsBackdrop" onclick="closeSettings()"></div>
 
+    <!-- SETTINGS PANEL -->
     <div class="settings-panel" id="settingsPanel">
         <h2>Settings</h2>
-        <h3>Background Color</h3>
 
-        <div class="color-grid">
-            <div class="color-option" onclick="changeColor('#1b1b1b', this)">
-                <div class="color-preview" style="background:#1b1b1b"></div>
-                <p>Default</p>
+        <!-- THEME SECTION -->
+        <div class="settings-section">
+            <h3>Theme</h3>
+            <div class="option-row">
+                <button class="pill theme-option" data-theme="space">Space</button>
+                <button class="pill theme-option" data-theme="midnight">Midnight</button>
             </div>
-            <div class="color-option" onclick="changeColor('#000000', this)">
-                <div class="color-preview" style="background:#000"></div>
-                <p>Black</p>
+            <div class="option-row">
+                <button class="pill theme-option" data-theme="neon">Neon</button>
+                <button class="pill theme-option" data-theme="grey">Grey</button>
             </div>
-            <div class="color-option" onclick="changeColor('#1e3a8a', this)">
-                <div class="color-preview" style="background:#1e3a8a"></div>
-                <p>Blue</p>
+        </div>
+
+        <!-- FONT SECTION -->
+        <div class="settings-section">
+            <h3>Font</h3>
+            <div class="option-row">
+                <button class="pill font-option" data-font="montserrat">Montserrat</button>
+                <button class="pill font-option" data-font="orbitron">Orbitron</button>
+                <button class="pill font-option" data-font="nunito">Nunito</button>
             </div>
-            <div class="color-option" onclick="changeColor('#166534', this)">
-                <div class="color-preview" style="background:#166534"></div>
-                <p>Green</p>
-            </div>
-            <div class="color-option" onclick="changeColor('#581c87', this)">
-                <div class="color-preview" style="background:#581c87"></div>
-                <p>Purple</p>
+        </div>
+
+        <!-- GLOW INTENSITY SECTION -->
+        <div class="settings-section">
+            <h3>Glow Intensity</h3>
+            <div class="option-row">
+                <button class="pill glow-option" data-glow="low">Low</button>
+                <button class="pill glow-option" data-glow="medium">Medium</button>
+                <button class="pill glow-option" data-glow="high">High</button>
             </div>
         </div>
     </div>
@@ -100,7 +110,6 @@
 
     <!-- MAIN CONTENT -->
     <div class="content">
-
         <hr>
 
         <div class="search">

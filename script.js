@@ -1,122 +1,100 @@
-// ===================================
-// SEARCH
-// ===================================
+/* ============================================
+   SEARCH FUNCTIONALITY
+============================================ */
 const input = document.querySelector(".search input");
 const games = document.querySelectorAll("#games img");
 
 if (input) {
     input.addEventListener("input", () => {
-        const term = input.value.toLowerCase();
-        games.forEach(img =>
-            img.style.display = img.alt.toLowerCase().includes(term) ? "block" : "none"
-        );
+        const searchTerm = input.value.toLowerCase();
+        games.forEach((game) => {
+            game.style.display = game.alt.toLowerCase().includes(searchTerm)
+                ? "block"
+                : "none";
+        });
     });
 }
 
-// ===================================
-// SETTINGS PANEL
-// ===================================
+/* ============================================
+   SETTINGS PANEL OPEN/CLOSE
+============================================ */
 function openSettings() {
     document.getElementById("settingsPanel").classList.add("open");
     document.getElementById("settingsBackdrop").classList.add("open");
-    document.querySelector(".settings-btn").classList.add("spin");
 }
 
 function closeSettings() {
     document.getElementById("settingsPanel").classList.remove("open");
     document.getElementById("settingsBackdrop").classList.remove("open");
-    document.querySelector(".settings-btn").classList.remove("spin");
 }
 
-// ===================================
-// THEMES
-// ===================================
-function applyTheme(theme) {
-    const themes = [
-        "midnightplus",
-        "cosmicdrift",
-        "galaxyparallax",
-        "warpcore",
-        "neonpulse",
-        "greyminimal",
-        "eventhorizon"
-    ];
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSettings();
+});
 
-    themes.forEach(t => document.body.classList.remove("theme-" + t));
-    document.body.classList.add("theme-" + theme);
+/* ============================================
+   STAR SHOOTING (EVERY 10 SECONDS)
+============================================ */
+function createShootingStar() {
+    const star = document.getElementById("shooting-star");
 
-    localStorage.setItem("av-theme", theme);
+    if (!star) return;
 
-    document.querySelectorAll(".theme-option").forEach(btn =>
-        btn.classList.toggle("active", btn.dataset.theme === theme)
-    );
+    // Reset position each time
+    const startX = Math.random() * window.innerWidth * 0.5;
+    const startY = Math.random() * window.innerHeight * 0.4;
+
+    star.style.left = startX + "px";
+    star.style.top = startY + "px";
+
+    star.style.animation = "none";
+
+    // Restart animation
+    requestAnimationFrame(() => {
+        star.style.animation = "shootingStar 1s linear";
+    });
 }
 
-// ===================================
-// FONT
-// ===================================
-function applyFont(fontKey) {
-    const fonts = {
-        montserrat: "'Montserrat', sans-serif",
-        orbitron: "'Orbitron', sans-serif",
-        nunito: "'Nunito', sans-serif"
-    };
+// Trigger every 10 seconds
+setInterval(createShootingStar, 10000);
 
-    document.documentElement.style.setProperty("--font-family", fonts[fontKey]);
-    localStorage.setItem("av-font", fontKey);
+/* ============================================
+   THEME SWITCHING SYSTEM
+============================================ */
 
-    document.querySelectorAll(".font-option").forEach(btn =>
-        btn.classList.toggle("active", btn.dataset.font === fontKey)
-    );
-}
+// All supported themes
+const themes = [
+    "midnightplus",
+    "cosmicdrift",
+    "galaxyparallax",
+    "neonpulse",
+    "greyminimal",
+    "eventhorizon",
+    "aurorapulse"
+];
 
-// ===================================
-// GLOW
-// ===================================
-function applyGlow(level) {
-    const levels = { low: 0.5, medium: 1, high: 1.6 };
-    document.documentElement.style.setProperty("--glow-strength", levels[level]);
-    localStorage.setItem("av-glow", level);
-
-    document.querySelectorAll(".glow-option").forEach(btn =>
-        btn.classList.toggle("active", btn.dataset.glow === level)
-    );
-}
-
-// ===================================
-// SHOOTING STAR
-// ===================================
-const shootingStar = document.getElementById("shooting-star");
-
-function spawnShootingStar() {
-    shootingStar.style.opacity = "1";
-    shootingStar.style.animation = "shootingStar 1.2s linear forwards";
-
-    setTimeout(() => {
-        shootingStar.style.opacity = "0";
-        shootingStar.style.animation = "none";
-    }, 1200);
-}
-
-setInterval(spawnShootingStar, 10000); // Every 10 sec
-
-// ===================================
-// INIT
-// ===================================
+// Load saved theme
 window.addEventListener("DOMContentLoaded", () => {
-    applyTheme(localStorage.getItem("av-theme") || "midnightplus");
-    applyFont(localStorage.getItem("av-font") || "montserrat");
-    applyGlow(localStorage.getItem("av-glow") || "medium");
+    const savedTheme = localStorage.getItem("av-theme");
+    if (savedTheme && themes.includes(savedTheme)) {
+        document.body.className = "theme-" + savedTheme;
+    }
+});
 
-    document.querySelectorAll(".theme-option").forEach(btn =>
-        btn.addEventListener("click", () => applyTheme(btn.dataset.theme))
-    );
+// Handle theme clicks
+document.querySelectorAll(".theme-option").forEach(button => {
+    button.addEventListener("click", () => {
+        const selectedTheme = button.getAttribute("data-theme");
 
-    document.querySelectorAll(".font-option").forEach(btn =>
-        btn.addEventListener("click", () => applyFont(btn.dataset.font))
-    );
+        // Remove old theme classes
+        themes.forEach(t => {
+            document.body.classList.remove("theme-" + t);
+        });
 
-    document.querySelectorAll(".glow-option").forEach(btn =>
-        btn.addEventListener("click", () => applyGlow(btn.dataset.glow))
-    );
+        // Apply new
+        document.body.classList.add("theme-" + selectedTheme);
+
+        // Save to local storage
+        localStorage.setItem("av-theme", selectedTheme);
+    });
 });

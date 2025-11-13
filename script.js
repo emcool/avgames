@@ -1,6 +1,4 @@
-// =====================
-// SEARCH FUNCTION
-// =====================
+// SEARCH
 const input = document.querySelector('input');
 const games = document.querySelectorAll('#games img');
 
@@ -12,9 +10,7 @@ input.addEventListener('input', () => {
     });
 });
 
-// =====================
-// SETTINGS PANEL
-// =====================
+// SETTINGS
 function openSettings() {
     document.getElementById("settingsPanel").classList.add("open");
     document.getElementById("settingsBackdrop").classList.add("open");
@@ -36,16 +32,8 @@ function changeColor(color, element) {
     element.classList.add("selected");
 }
 
-// Restore chosen color
+// Restore saved background
 window.addEventListener("DOMContentLoaded", () => {
     const saved = localStorage.getItem("av-bg");
-    if (saved) {
-        document.body.style.backgroundColor = saved;
-
-        document.querySelectorAll(".color-option").forEach(opt => {
-            if (opt.innerHTML.includes(saved)) {
-                opt.classList.add("selected");
-            }
-        });
-    }
+    if (saved) document.body.style.backgroundColor = saved;
 });

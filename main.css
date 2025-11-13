@@ -50,7 +50,7 @@ nav .settings-btn:hover {
     color: #2c7ffc;
 }
 
-/* CONTENT */
+/* MAIN CONTENT */
 .content {
     flex-direction: column;
     padding: 7vw;
@@ -60,7 +60,7 @@ nav .settings-btn:hover {
 .content hr {
     border: 0;
     height: 4px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), white, rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, rgba(0,0,0,0), white, rgba(0,0,0,0));
     margin: 1vw 0;
 }
 
@@ -89,7 +89,6 @@ nav .settings-btn:hover {
     font-size: 1.5vw;
     padding: .8vw 1vw;
     cursor: pointer;
-    transition: .3s ease;
 }
 
 /* GAME GRID */
@@ -114,19 +113,22 @@ nav .settings-btn:hover {
     transform: scale(1.01);
 }
 
-/* FEATURED SECTION */
+/* FEATURED SECTION — FIXED */
 .featured {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start; /* FIX — lines everything up */
     padding: 1vw;
+    margin: 1%;
     margin-top: 6vw;
 }
 
 .featured h1 {
     font-size: 3.5vw;
     font-weight: 700;
-    width: 84%;
+    margin: 1vw 1vw .4vw 1vw;
+    flex-basis: 100%; /* FIX — heading takes full width */
     text-align: left;
     color: white;
 }
